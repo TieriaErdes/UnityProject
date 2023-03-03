@@ -10,6 +10,7 @@ public class player_climbing : MonoBehaviour
 
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] float climbingSpeed = 3f;
+    [SerializeField] float jump_backForce = -5f;
 
     //[SerializeField] Transform ClimbingCheck = new Transform[4];
     [SerializeField] Transform ClimbingCheck;
@@ -23,8 +24,6 @@ public class player_climbing : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         player = GetComponent<player_main>();
-        //Console.WriteLine("Climbing!!!");
-        //Console.Out.WriteLine("Climbing!!!");
     }
 
     // Update is called once per frame
@@ -39,18 +38,25 @@ public class player_climbing : MonoBehaviour
         float horisontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        if ((horisontalInput != 0) && isClimbing() && (player.staminaPoints > 0))
+
+        if (Input.GetButtonDown("Jump") && isClimbing())
+            rb.velocity = new Vector3(horisontalInput, rb.velocity.y, jump_backForce);
+
+        if ((verticalInput > 0) && isClimbing()) //&& (player.staminaPoints > 0))
         {
-            rb.velocity = new Vector3(rb.velocity.x, climbingSpeed, verticalInput * movementSpeed);
+            rb.velocity = new Vector3(horisontalInput * movementSpeed, climbingSpeed, rb.velocity.z);
         }
+        else if ((verticalInput < 0) && isClimbing())
+            rb.velocity = new Vector3(horisontalInput * movementSpeed, -climbingSpeed, rb.velocity.z);
         
+
 
     }
 
 
     bool isClimbing()
     {
-        return Physics.CheckSphere(ClimbingCheck.position, 0.1f, Terrain) || Physics.CheckSphere(ClimbingCheck.position, 0.1f, Tree);
+        return Physics.CheckSphere(ClimbingCheck.position, 0.2f, Terrain) || Physics.CheckSphere(ClimbingCheck.position, 0.2f, Tree);
     }
 
     //bool isClimbing()

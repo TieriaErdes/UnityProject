@@ -31,7 +31,8 @@ public class player_movement : MonoBehaviour
         float horisontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        rb.velocity = new Vector3(horisontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
+        if (IsGrounded())
+            rb.velocity = new Vector3(horisontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
