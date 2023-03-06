@@ -65,6 +65,10 @@ public class player_movement : MonoBehaviour
     //    return Physics.CheckSphere(GrondCheck.position, 0.1f, Terrain);
     //}
 
+    public Transform orientation;
+
+    public float horisontalInput;
+    public float verticalInput;
 
     public float speed_move = 5f;
     float x_move;
@@ -77,27 +81,51 @@ public class player_movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         player = GetComponent<CharacterController>();
+
+        rb.freezeRotation = true;
+
+        //Сила прыжка зависит от массы объекта группы player
+        jumpForce /= rb.mass;
     }
 
     void Update()
     {
-        Move();
+        //x_move = Input.GetAxis("Horizontal");
+        //z_move = Input.GetAxis("Vertical");
+        //if (player.isGrounded)
+        //{
+        //    move_Direction = new Vector3(x_move, 0f, z_move);
+        //    move_Direction = transform.TransformDirection(move_Direction);
+        //}
+        //if (Input.GetButtonDown("Space") && player.isGrounded)
+        //    rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        //move_Direction.y -= 1;
+        //player.Move(move_Direction * speed_move * Time.deltaTime);
+        //
+        //if (Input.GetButtonDown("Space") && player.isGrounded)
+        //    rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+
+        //Horisontal и Vertical это названия групп, которые принимают ввод определённых клавиш
+        // (посмротреть можно в настройках проекта, во вкладке Input manager
+
+        myInput();
     }
 
-    void Move()
+    private void FixedUpdate()
     {
-        x_move = Input.GetAxis("Horizontal");
-        z_move = Input.GetAxis("Vertical");
-        if (player.isGrounded)
-        {
-            move_Direction = new Vector3(x_move, 0f, z_move);
-            move_Direction = transform.TransformDirection(move_Direction);
-        }
-        move_Direction.y -= 1;
-        player.Move(move_Direction * speed_move * Time.deltaTime);
+        movePlayer();
+    }
 
-        if (Input.GetButtonDown("Jump") && player.isGrounded)
-                rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+    private void myInput()
+    {
+        horisontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
+    }
 
+    private void movePlayer()
+    {
+        move_Direction = orientation.forward * verticalInput + orientation.right * horisontalInput;
+
+        rb.AddForce(move_Direction.normalized * movementSpeed * 5.0f, ForceMode.Force);
     }
 }
