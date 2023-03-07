@@ -9,108 +9,82 @@ public class player_movement : MonoBehaviour
 {
 
     Rigidbody rb;
-    [SerializeField] float movementSpeed = 5f;
+
+    [Header("Movement")]
+    public float movementSpeed = 5f;
+    public float walkSpeed;
+    public float sprintSpeed;
+    public float climbingSpeed;
+    public float groundDrag;
+
+    [Header("Crouching")]
+    public float crouchSpeed;
+    public float crouchYScale;
+    private float startYScale;
+
+    [Header("Keybinds")]
+    public KeyCode sprintKey = KeyCode.LeftShift;
+    public KeyCode crouchKey = KeyCode.LeftControl;
+
+    [Header("Ground Check")]
     [SerializeField] float jumpForce = 5f;
-
-    //[SerializeField] Transform GrondCheck;
-    //[SerializeField] LayerMask Terrain;
-
-    ////[SerializeField] GameObject Player;
-    //CharacterController player;
-    //Vector3 move_Direction;
-
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    rb = GetComponent<Rigidbody>();
-    //    player = GetComponent<CharacterController>();
-
-    //    // Сила прыжка зависит от массы объекта группы player
-    //    jumpForce /= rb.mass;
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    // Horisontal и Vertical это названия групп, которые принимают ввод определённых клавиш
-    //    // (посмротреть можно в настройках проекта, во вкладке Input manager
-    //    //float horisontalInput = Input.GetAxis("Horizontal");
-    //    //float verticalInput = Input.GetAxis("Vertical");
-    //    //
-    //    //if (IsGrounded())
-    //    //    rb.velocity = new Vector3(horisontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
-
-    //    //float x_move = Input.GetAxis("Horizontal");
-    //    //float z_move = Input.GetAxis("Vertical");
-    //    //if (player.isGrounded)
-    //    //{
-    //    //    move_Direction = new Vector3(x_move, 0f, z_move);
-    //    //    move_Direction = transform.TransformDirection(move_Direction);
-    //    //}
-    //    //move_Direction.y -= 1;
-    //    //player.Move(move_Direction * movementSpeed * Time.deltaTime);
-
-    //    //if (Input.GetButtonDown("Jump") && IsGrounded())
-    //    //{
-    //    //    rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-    //    //}
-
-
-    //}
-
-
-    //bool IsGrounded()
-    //{
-    //    return Physics.CheckSphere(GrondCheck.position, 0.1f, Terrain);
-    //}
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    public bool isGrounded;
+    public float airMultiplier;
 
     public Transform orientation;
+
+    public MovementState state;
+    public enum MovementState
+    {
+        walkind,
+        sprinting,
+        climbing,
+        crouching,
+        air
+    }
+
+    public bool climbing;
 
     public float horisontalInput;
     public float verticalInput;
 
-    public float speed_move = 5f;
-    float x_move;
-    float z_move;
-    CharacterController player;
     Vector3 move_Direction;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        player = GetComponent<CharacterController>();
 
         rb.freezeRotation = true;
 
         //Сила прыжка зависит от массы объекта группы player
         jumpForce /= rb.mass;
+
+        startYScale = transform.localScale.y;
+        //startYScale = playerHeight;
     }
 
     void Update()
     {
-        //x_move = Input.GetAxis("Horizontal");
-        //z_move = Input.GetAxis("Vertical");
-        //if (player.isGrounded)
-        //{
-        //    move_Direction = new Vector3(x_move, 0f, z_move);
-        //    move_Direction = transform.TransformDirection(move_Direction);
-        //}
-        //if (Input.GetButtonDown("Space") && player.isGrounded)
-        //    rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-        //move_Direction.y -= 1;
-        //player.Move(move_Direction * speed_move * Time.deltaTime);
-        //
-        //if (Input.GetButtonDown("Space") && player.isGrounded)
-        //    rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+        
+        // Проверка поверхности
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        //Horisontal и Vertical это названия групп, которые принимают ввод определённых клавиш
-        // (посмротреть можно в настройках проекта, во вкладке Input manager
 
         myInput();
+        SpeedControl();
+        stateHandler();
+
+        // скольжение
+        if (isGrounded)
+            rb.drag = groundDrag;
+        else
+            rb.drag = 0;
     }
 
+    // Вызывается каждую секунду, без пропусков
     private void FixedUpdate()
     {
         movePlayer();
@@ -120,12 +94,95 @@ public class player_movement : MonoBehaviour
     {
         horisontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            // readyToJump = false;
+            Jump();
+        }
+        //Invoke(nameof(ResetJump), jumpCooldown);
+
+
+        // начало движения в присяде
+        if (Input.GetKeyDown(crouchKey))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        }
+
+        // завершение движения в присяде
+        if (Input.GetKeyUp(crouchKey))
+            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+    }
+
+    private void stateHandler()
+    {
+        // карабканье
+        if (climbing)
+        {
+            state = MovementState.climbing;
+            movementSpeed = climbingSpeed;
+        }
+
+        // движение в присяде
+        else if (Input.GetKey(crouchKey))
+        {
+            state = MovementState.crouching;
+            movementSpeed = crouchSpeed;
+        }
+
+        // Спринт
+        else if (isGrounded && Input.GetKey(sprintKey))
+        {
+            state = MovementState.sprinting;
+            movementSpeed = sprintSpeed;
+        }
+
+        // Обычный шаг
+        else if (isGrounded)
+        {
+            state = MovementState.walkind;
+            movementSpeed = walkSpeed;
+        }
+
+        // В воздухе
+        else
+        {
+            state = MovementState.air;
+
+        }
     }
 
     private void movePlayer()
     {
         move_Direction = orientation.forward * verticalInput + orientation.right * horisontalInput;
 
-        rb.AddForce(move_Direction.normalized * movementSpeed * 5.0f, ForceMode.Force);
+        // на земле
+        if (isGrounded)
+            rb.AddForce(move_Direction.normalized * movementSpeed * 5.0f, ForceMode.Force);
+
+        // в воздухе
+        else if (!isGrounded)
+            rb.AddForce(move_Direction.normalized * movementSpeed * 10.0f * airMultiplier, ForceMode.Force);
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        // Огринчение скорости перемещения
+        if (flatVel.magnitude > movementSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * movementSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+    }
+
+    private void Jump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 }
+

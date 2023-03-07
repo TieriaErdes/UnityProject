@@ -135,10 +135,6 @@ GameObject:
   - component: {fileID: 234389650}
   - component: {fileID: 234389649}
   - component: {fileID: 234389648}
-  - component: {fileID: 234389647}
-  - component: {fileID: 234389646}
-  - component: {fileID: 234389644}
-  - component: {fileID: 234389642}
   m_Layer: 0
   m_Name: Player object
   m_TagString: Player
@@ -161,80 +157,6 @@ Transform:
   m_Father: {fileID: 1120342483}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &234389642
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234389640}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &234389644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234389640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8315d3e337b1bc4ebf4a0fc4b4c1183, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
-  climbingSpeed: 1
-  jump_backForce: -5
-  ClimbingCheck: {fileID: 0}
-  Terrain:
-    serializedVersion: 2
-    m_Bits: 64
-  Tree:
-    serializedVersion: 2
-    m_Bits: 128
---- !u!114 &234389646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234389640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15a7eee32963014d91f5ab7c328a23f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
-  jumpForce: 5
-  orientation: {fileID: 2076270138}
-  horisontalInput: 0
-  verticalInput: 0
-  speed_move: 10
---- !u!114 &234389647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234389640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39c6d430abdbcd24bbfbd691cb1fc961, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPoints: 0
-  hungerPoints: 0
-  thirstPoints: 0
-  staminaPoints: 0
 --- !u!136 &234389648
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -553,8 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedf0693044489a43aa802c86bcdd433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensativityX: 400
-  sensativityY: 400
+  sensativityX: 500
+  sensativityY: 500
   orientation: {fileID: 2076270138}
 --- !u!114 &963194230
 MonoBehaviour:
@@ -581,10 +503,9 @@ GameObject:
   - component: {fileID: 1120342480}
   - component: {fileID: 1120342486}
   - component: {fileID: 1120342479}
+  - component: {fileID: 1120342488}
   - component: {fileID: 1120342484}
   - component: {fileID: 1120342485}
-  - component: {fileID: 1120342487}
-  - component: {fileID: 1120342488}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -605,11 +526,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
+  walkSpeed: 8
+  sprintSpeed: 12
+  climbingSpeed: 5
+  groundDrag: 4
+  crouchSpeed: 4
+  crouchYScale: 0.5
+  sprintKey: 304
+  crouchKey: 306
   jumpForce: 5
+  playerHeight: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  isGrounded: 0
+  airMultiplier: 0.4
   orientation: {fileID: 2076270138}
+  state: 0
+  climbing: 0
   horisontalInput: 0
   verticalInput: 0
-  speed_move: 10
 --- !u!136 &1120342480
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -682,6 +618,7 @@ MonoBehaviour:
   Tree:
     serializedVersion: 2
     m_Bits: 128
+  playerRadius: 0
 --- !u!114 &1120342486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,48 +626,139 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120342477}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39c6d430abdbcd24bbfbd691cb1fc961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 0
-  hungerPoints: 0
-  thirstPoints: 0
-  staminaPoints: 0
---- !u!114 &1120342487
+  hitPoints: 100
+  hungerPoints: 100
+  thirstPoints: 100
+  staminaPoints: 100
+--- !u!114 &1120342488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120342477}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dedf0693044489a43aa802c86bcdd433, type: 3}
+  m_Script: {fileID: 11500000, guid: 5de400defdda72f498fd0d678fd18f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensativityX: 1
-  sensativityY: 1
-  orientation: {fileID: 0}
---- !u!143 &1120342488
-CharacterController:
+  orientation: {fileID: 2076270138}
+  rb: {fileID: 1120342484}
+  pm: {fileID: 1120342479}
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 128
+  climbSpeed: 6
+  maxClimbTime: 10
+  climbJumpUpForce: 0
+  climbJumpBackForce: 0
+  jumpKey: 32
+  climbJumps: 0
+  detectionLength: 0.7
+  sphereCastRadius: 0.25
+  maxWallLookAngle: 30
+--- !u!1 &1143611467
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1120342477}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1143611471}
+  - component: {fileID: 1143611470}
+  - component: {fileID: 1143611469}
+  - component: {fileID: 1143611468}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1143611468
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143611467}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1143611469
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143611467}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1143611470
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143611467}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1143611471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143611467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 476.31, y: 52.283, z: 663.43}
+  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456448680
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +771,7 @@ GameObject:
   - component: {fileID: 1456448683}
   - component: {fileID: 1456448682}
   - component: {fileID: 1456448681}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ewr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,8 +849,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456448680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 472.95, y: 50.92, z: 660.19}
-  m_LocalScale: {x: 10.108973, y: -0.66169876, z: 7.3007345}
+  m_LocalPosition: {x: 456.81, y: 50.92, z: 660.19}
+  m_LocalScale: {x: 56.548584, y: -0.66169876, z: 7.3007345}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -840,7 +868,7 @@ GameObject:
   - component: {fileID: 1592453607}
   - component: {fileID: 1592453606}
   - component: {fileID: 1592453605}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

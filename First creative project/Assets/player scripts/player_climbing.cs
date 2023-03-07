@@ -17,6 +17,7 @@ public class player_climbing : MonoBehaviour
     [SerializeField] LayerMask Terrain;
     [SerializeField] LayerMask Tree;
 
+    public float playerRadius;
     
 
     // Start is called before the first frame update
@@ -56,7 +57,8 @@ public class player_climbing : MonoBehaviour
 
     bool isClimbing()
     {
-        return Physics.CheckSphere(ClimbingCheck.position, 0.2f, Terrain) || Physics.CheckSphere(ClimbingCheck.position, 0.2f, Tree);
+        //return Physics.CheckSphere(ClimbingCheck.position, 0.2f, Terrain) || Physics.CheckSphere(ClimbingCheck.position, 0.2f, Tree);
+        return Physics.Raycast(transform.position, Vector3.forward, playerRadius * 0.5f + 0.2f, Tree);
     }
 
     //bool isClimbing()
