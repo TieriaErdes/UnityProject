@@ -5,65 +5,143 @@ using UnityEngine;
 
 public class player_climbing : MonoBehaviour
 {
-    Rigidbody rb;
-    player_main player;
+    // 
+    // Данный скрипт отвечает за механику карабканья игрока.
+    // Сам процесс осуществуется с помощью компонента Rigidbody
+    // и скрипта player_movement. Так же реализована механика прыжков вверх и назад
+    // время карабканья игрока ограничено его выносливостью (p_main.staminaPoints)
+    //
 
-    [SerializeField] float movementSpeed = 5f;
-    [SerializeField] float climbingSpeed = 3f;
-    [SerializeField] float jump_backForce = -5f;
+    [Header("Raference")]
+    public Transform orientation;
+    public Rigidbody rb;
+    public player_movement pm;
+    public player_main p_Main;
+    public LayerMask whatIsWall;
 
-    //[SerializeField] Transform ClimbingCheck = new Transform[4];
-    [SerializeField] Transform ClimbingCheck;
-    [SerializeField] LayerMask Terrain;
-    [SerializeField] LayerMask Tree;
+    [Header("Climbing")]
+    public float climbSpeed;
+    //public float maxClimbTime;
+    //public float climbTimer;
+    private bool climbing;
 
-    public float playerRadius;
-    
+    [Header("Climb jumping")]
+    public float climbJumpUpForce;
+    public float climbJumpBackForce;
+
+    public KeyCode jumpKey = KeyCode.Space;
+    public int climbJumps;
+    private int ClimbJumpsLeft;
+
+    [Header("Detection")]
+    public float detectionLength;
+    public float sphereCastRadius;
+    public float maxWallLookAngle;
+    private float WallLookAngle;
+
+    private RaycastHit frontWallHit;
+    private bool wallFront;
+
+    private Transform lastWall;
+    private Vector3 lastWallNormal;
+    public float minwallNormalAngleChange;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        player = GetComponent<player_main>();
+        pm = gameObject.GetComponent<player_movement>();
+        p_Main = gameObject.GetComponent<player_main>();
+
+        //maxClimbTime = p_Main.staminaPoints;
+
+        lastWall = frontWallHit.transform;
+        lastWallNormal = frontWallHit.normal;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //for (int i = 0; i < ClimbingCheck.Length; i++)
-        //    if (isClimbing(i))
-        //    {
-        //        rb.velocity = new Vector3()
-        //    }
+        WallCheck();
+        StateMachine();
 
-        float horisontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-
-        if (Input.GetButtonDown("Jump") && isClimbing())
-            rb.velocity = new Vector3(horisontalInput, rb.velocity.y, jump_backForce);
-
-        if ((verticalInput > 0) && isClimbing()) //&& (player.staminaPoints > 0))
-        {
-            rb.velocity = new Vector3(horisontalInput * movementSpeed, climbingSpeed, rb.velocity.z);
-        }
-        else if ((verticalInput < 0) && isClimbing())
-            rb.velocity = new Vector3(horisontalInput * movementSpeed, -climbingSpeed, rb.velocity.z);
-        
-
-
+        if (climbing)
+            ClimbingMovement();
     }
 
 
-    bool isClimbing()
+    private void StateMachine()
     {
-        //return Physics.CheckSphere(ClimbingCheck.position, 0.2f, Terrain) || Physics.CheckSphere(ClimbingCheck.position, 0.2f, Tree);
-        return Physics.Raycast(transform.position, Vector3.forward, playerRadius * 0.5f + 0.2f, Tree);
+        // Подъём
+        if (wallFront && Input.GetKey(KeyCode.W) && (WallLookAngle < maxWallLookAngle))
+        {
+            if (!climbing && (p_Main.staminaPoints > 1))
+                StartClimbing();
+
+            // отсчёт времени карабканья
+            //if (climbTimer > 0)
+            //    climbTimer = p_Main.staminaPoints;
+
+            if (p_Main.staminaPoints < 1)
+                StopClimbing();
+
+        }
+        else
+        {
+            if (climbing)
+                StopClimbing();
+        }
+
+        // прыжки при карабканье
+        if (wallFront && Input.GetKeyDown(jumpKey) && (ClimbJumpsLeft > 0))
+            Climbjump();
     }
 
-    //bool isClimbing()
-    //{
-    //    Console.WriteLine("Climbing!!!");
-    //    return Physics.Raycast(ClimbingCheck.position, Vector3.forward, 0.1f);
-    //}
+    private void WallCheck()
+    {
+        wallFront = Physics.SphereCast(transform.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, whatIsWall);
+        WallLookAngle = Vector3.Angle(orientation.forward, -frontWallHit.normal);
+
+        bool newWall = frontWallHit.transform != lastWall || Math.Abs(Vector3.Angle(lastWallNormal, frontWallHit.normal)) > minwallNormalAngleChange;
+
+
+        if (pm.isGrounded || (wallFront && newWall))
+        {
+            //climbTimer = maxClimbTime;
+            //if (climbTimer < maxClimbTime)
+            //    climbTimer += 10 * Time.deltaTime;
+            ClimbJumpsLeft = climbJumps;
+        }
+    }
+
+
+    private void StartClimbing()
+    {
+        climbing = true;
+        pm.climbing = true;
+    }
+
+    private void StopClimbing()
+    { 
+        climbing= false;
+        pm.climbing = false;
+    }
+
+    private void ClimbingMovement()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, climbSpeed, rb.velocity.z);
+
+    }
+
+    private void Climbjump()
+    {
+        Vector3 forceToApply = transform.up * climbJumpUpForce + frontWallHit.normal * climbJumpBackForce;
+
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(forceToApply, ForceMode.Impulse);
+
+        ClimbJumpsLeft--;
+    }
 }

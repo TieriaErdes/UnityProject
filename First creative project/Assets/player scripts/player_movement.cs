@@ -7,14 +7,24 @@ using UnityEngine.EventSystems;
 
 public class player_movement : MonoBehaviour
 {
+    // 
+    // Данный скрипт реализует механику перемещения игрока.
+    // В нём реализовано перемещение простым шагом, спринт, 
+    // движение в присяде, прыжки и припретено перемещение по стене
+    // 
+    
 
     Rigidbody rb;
+    public player_climbing pc;
+    public player_main p_Main;
 
     [Header("Movement")]
     public float movementSpeed = 5f;
     public float walkSpeed;
     public float sprintSpeed;
-    public float climbingSpeed;
+    private float sprintMaxTime;
+    private float sprintTime;
+    private float climbingSpeed;
     public float groundDrag;
 
     [Header("Crouching")]
@@ -36,6 +46,7 @@ public class player_movement : MonoBehaviour
     public Transform orientation;
 
     public MovementState state;
+
     public enum MovementState
     {
         walkind,
@@ -56,11 +67,19 @@ public class player_movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //pc = gameObject.GetComponent<player_climbing>();
+        p_Main = gameObject.GetComponent<player_main>();
 
         rb.freezeRotation = true;
 
         //Сила прыжка зависит от массы объекта группы player
         jumpForce /= rb.mass;
+
+        // Максимальная продолжительность спринта зависит от количества стамины
+        sprintMaxTime = p_Main.staminaPoints;
+
+        // Получаем скорость карабканья из скрипта player_climbing
+        climbingSpeed = pc.climbSpeed;
 
         startYScale = transform.localScale.y;
         //startYScale = playerHeight;
@@ -125,17 +144,18 @@ public class player_movement : MonoBehaviour
         }
 
         // движение в присяде
-        else if (Input.GetKey(crouchKey))
+        else if (isGrounded && Input.GetKey(crouchKey))
         {
             state = MovementState.crouching;
             movementSpeed = crouchSpeed;
         }
 
         // Спринт
-        else if (isGrounded && Input.GetKey(sprintKey))
+        else if (isGrounded && Input.GetKey(sprintKey) && (sprintTime < sprintMaxTime))
         {
             state = MovementState.sprinting;
             movementSpeed = sprintSpeed;
+            sprintTime += Time.deltaTime;
         }
 
         // Обычный шаг
