@@ -12,15 +12,16 @@ public class stats_changes : MonoBehaviour
     void Start()
     {
         p = gameObject.GetComponent<player_main>();
-        healthBar.fillAmount = p.hitPoints / 100;
-        hungerBar.fillAmount = p.hungerPoints / 100;
-        thirstBar.fillAmount = p.thirstPoints / 100;
-        staminaBar.fillAmount = p.staminaPoints / 100;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        healthBar.fillAmount = p.hitPoints / 100;
+        hungerBar.fillAmount = p.hungerPoints / 100;
+        thirstBar.fillAmount = p.thirstPoints / 100;
+        //staminaBar.fillAmount -= p.staminaPoints / 100f;
+        staminaBar.fillAmount = p.staminaPoints;
     }
 }
