@@ -29,6 +29,18 @@ public class InventorySlot
         _stackSize = -1;
     }
 
+    public void AssignItem(InventorySlot invSlot)
+    {
+        if (_itemData == invSlot.ItemData)
+            AddToStack(invSlot._stackSize);
+        else
+        {
+            _itemData = invSlot.ItemData;
+            _stackSize = 0;
+            AddToStack(invSlot._stackSize);
+        }
+    }
+
     public void UpdateInventorySlot(Inventory_itemData data, int amoutn)
     {
         _itemData = data;

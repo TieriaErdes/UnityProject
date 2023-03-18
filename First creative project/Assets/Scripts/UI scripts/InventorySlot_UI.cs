@@ -38,6 +38,7 @@ public class InventorySlot_UI : MonoBehaviour
         }
         else
         {
+            //Debug.Log("Slot cleared");
             ClearSlot();
         }
 

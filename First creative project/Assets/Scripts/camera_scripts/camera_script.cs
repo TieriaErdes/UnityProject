@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class camera_script : MonoBehaviour
@@ -43,14 +44,33 @@ public class camera_script : MonoBehaviour
         //player.transform.rotation = Quaternion.Euler(-yRot, xRot, 0f);
         //playerGameObject.transform.rotation = Quaternion.Euler(0f, xRot, 0f);
 
+
+        // Возврат курсора
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
+
+        // Скрытие курсора
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensativityX;
         float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensativityY;
 
-        rotationY += mouseX;
-        rotationX -= mouseY;
-        rotationX = Mathf.Clamp(rotationX, -90f, 90f);
+        if (!Cursor.visible)
+        {
+            rotationY += mouseX;
+            rotationX -= mouseY;
+            rotationX = Mathf.Clamp(rotationX, -90f, 90f);
 
-        transform.rotation = Quaternion.Euler(rotationX, rotationY, 0);
-        orientation.rotation = Quaternion.Euler(0, rotationY, 0);
+            transform.rotation = Quaternion.Euler(rotationX, rotationY, 0);
+            orientation.rotation = Quaternion.Euler(0, rotationY, 0);
+        }
     }
 }
