@@ -29,13 +29,16 @@ public class MouseItemData : MonoBehaviour
 
     private void Update()
     {
-        if (AssignedInventorySlot.ItemData != null)
+        // TODO: добавить поддержку контроллера
+
+        if (AssignedInventorySlot.ItemData != null)     // Если есть предмет, он следует за мышью
         {
             transform.position = Mouse.current.position.ReadValue();
 
             if (Mouse.current.leftButton.wasPressedThisFrame && !IsPointerOverUIObject())
             {
                 ClearSlot();
+                // TODO: бросать предметы на землю
             }
         }
     }

@@ -16,7 +16,7 @@ public class InventorySystem
 
     public UnityAction<InventorySlot> OnInventorySlotChanged;
 
-    public InventorySystem(int size)
+    public InventorySystem(int size)            //  онструктор, который задаЄт количество слотов
     {
         inventorySlots = new List<InventorySlot>(size);
 
@@ -36,7 +36,7 @@ public class InventorySystem
         {
             foreach (var slot in invSlot)
             {
-                if (slot.RoomLeftInStack(amoutToAdd))
+                if (slot.EnoughRoomLeftInStack(amoutToAdd))
                 {
                     slot.AddToStack(amoutToAdd);
                     OnInventorySlotChanged?.Invoke(slot);
@@ -49,24 +49,30 @@ public class InventorySystem
         // ѕолучает первый свободный слот
         if (HasFreeSlot(out InventorySlot freeSlot))
         {
-            freeSlot.UpdateInventorySlot(itemToAdd, amoutToAdd);
-            OnInventorySlotChanged?.Invoke(freeSlot);
-            return true;
+            if (freeSlot.EnoughRoomLeftInStack(amoutToAdd))
+            {
+                freeSlot.UpdateInventorySlot(itemToAdd, amoutToAdd);
+                OnInventorySlotChanged?.Invoke(freeSlot);
+                return true;
+            }
+            // добавить реализацию того, чтобы можно было получать то, что лежит в стаке
+            // и искать следующий свободный слот, чтобы поместить туда остаток
         }    
         
         return false;
     }
 
-    public bool ContainsItem(Inventory_itemData itemToAdd, out List<InventorySlot> invSlot)
+    public bool ContainsItem(Inventory_itemData itemToAdd, out List<InventorySlot> invSlot)     // ≈сть ли в наших слотах предметы, которые можно было бы добавить
     {
+        // ≈сли да, то получаем список их всех 
         invSlot = InventorySlots.Where(i => i.ItemData == itemToAdd).ToList();  // 9:03, мог ошибитьс€
 
-        return invSlot == null ? false : true;
+        return invSlot == null ? false : true;      // если да, то вовращает true
     }
 
     public bool HasFreeSlot(out InventorySlot freeSlot)
     {
-        freeSlot = InventorySlots.FirstOrDefault(i => i.ItemData == null);
+        freeSlot = InventorySlots.FirstOrDefault(i => i.ItemData == null);      // ѕолучает первый свободный слот
         return freeSlot == null ? false : true;
     }
 }

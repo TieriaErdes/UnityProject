@@ -35,17 +35,18 @@ public class InventorySlot_UI : MonoBehaviour
         {
             itemSprite.sprite = slot.ItemData.Icon;
             itemSprite.color = Color.white;
+
+            if (slot.StackSize > 1) itemCout.text = slot.StackSize.ToString();
+            else itemCout.text = "";
         }
         else
         {
             //Debug.Log("Slot cleared");
-            ClearSlot();
-        }
-
-        if (slot.StackSize > 1)
-            itemCout.text = slot.StackSize.ToString();
-        else
+            //ClearSlot();
+            itemSprite.color = Color.clear;
+            itemSprite.sprite = null;
             itemCout.text = "";
+        }
     }
 
     public void UpdateUISlot()
@@ -61,8 +62,8 @@ public class InventorySlot_UI : MonoBehaviour
         itemSprite.color = Color.clear;
         itemCout.text = "";
 
-        button = GetComponent<Button>();
-        button?.onClick.AddListener(OnUISlotClick);
+        //button = GetComponent<Button>();
+        //button?.onClick.AddListener(OnUISlotClick);
     }
 
     public void OnUISlotClick()

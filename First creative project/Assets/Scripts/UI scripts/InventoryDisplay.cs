@@ -10,17 +10,17 @@ public abstract class InventoryDisplay : MonoBehaviour
     [SerializeField] MouseItemData mouseInventoryItem;
 
     protected InventorySystem inventorySystem;
-    protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary;
+    protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary;   // объеденяет слоты интерфейса с системными слотами
 
     public InventorySystem InventorySystem => inventorySystem;
     public Dictionary<InventorySlot_UI, InventorySlot> SlotDictionary => slotDictionary;
     
-    public virtual void Start()
+    protected virtual void Start()
     {
 
     }
 
-    public abstract void AssignSlot(InventorySystem invToDisplay);
+    public abstract void AssignSlot(InventorySystem invToDisplay);      // осуществялется дочерний класс
 
     protected virtual void UpdateSlot(InventorySlot updatedSlot)
     {
@@ -51,7 +51,7 @@ public abstract class InventoryDisplay : MonoBehaviour
                 clickedUISlot.UpdateUISlot();
                 return;
             }
-            else
+            else  // берём предмет из выбранного стака
             {
                 // Если мышка отображается (то есть если нажат lAlt)
                 mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot);
@@ -68,15 +68,18 @@ public abstract class InventoryDisplay : MonoBehaviour
             clickedUISlot.UpdateUISlot();
 
             mouseInventoryItem.ClearSlot();
+            return;
         }
 
         // Если же и там и там есть предметы, то.... я хз :)
 
-
+        
         if (clickedUISlot.AssignedInventorySlot.ItemData != null && mouseInventoryItem.AssignedInventorySlot.ItemData != null)
         {
             bool isSameItem = clickedUISlot.AssignedInventorySlot.ItemData == mouseInventoryItem.AssignedInventorySlot.ItemData;
-            if (isSameItem && clickedUISlot.AssignedInventorySlot.RoomLeftInStack(mouseInventoryItem.AssignedInventorySlot.StackSize))
+
+            // Оба предмета одинаковые? Объеденить их
+            if (isSameItem && clickedUISlot.AssignedInventorySlot.EnoughRoomLeftInStack(mouseInventoryItem.AssignedInventorySlot.StackSize))
             {
                 clickedUISlot.AssignedInventorySlot.AssignItem(mouseInventoryItem.AssignedInventorySlot);
                 clickedUISlot.UpdateUISlot();
@@ -85,12 +88,13 @@ public abstract class InventoryDisplay : MonoBehaviour
                 return;
             }
             else if (isSameItem &&
-                !clickedUISlot.AssignedInventorySlot.RoomLeftInStack(mouseInventoryItem.AssignedInventorySlot.StackSize, out int leftInStack))
+                !clickedUISlot.AssignedInventorySlot.EnoughRoomLeftInStack(mouseInventoryItem.AssignedInventorySlot.StackSize, out int leftInStack))
             {
                 if (leftInStack < 1) SwapSlots(clickedUISlot);          // Так как стак полон, просто меняем предметы местами
                 else        // Слот не забит, поэтому берём то что нужно из инвентаря мыши
                 {
                     int remainingOnMouse = mouseInventoryItem.AssignedInventorySlot.StackSize - leftInStack;
+
                     clickedUISlot.AssignedInventorySlot.AddToStack(leftInStack);
                     clickedUISlot.UpdateUISlot();
 
@@ -102,14 +106,12 @@ public abstract class InventoryDisplay : MonoBehaviour
             }
             
 
-            if (!isSameItem)
+            else if (!isSameItem)
             {
                 SwapSlots(clickedUISlot);
                 return;
             }
         }
-
-
 
 
     }   

@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// <summary>
+// Это скиптовый объект, который определяет что за предмет в игру
+// Это может быть унаследован из разветвлённой ветки предметов, по типу еда и экипировка
+// <summary>
+
 [CreateAssetMenu(menuName = "Inventory System/Inventory item")]
 
 public class Inventory_itemData : ScriptableObject
@@ -12,4 +17,5 @@ public class Inventory_itemData : ScriptableObject
     public string Description;
     public Sprite Icon;
     public int MaxStackSize;
+    public int Value;
 }

@@ -20,11 +20,11 @@ public class ItemPickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ItemPickUp OnTriggerEnter");
+        //Debug.Log("ItemPickUp OnTriggerEnter");
 
         var inventory = other.transform.GetComponent<InventoryHolder>();
 
-        if (inventory == null) return;
+        if (!inventory) return;
 
         Debug.Log("ItemPickUp OnTriggerEnter");
 

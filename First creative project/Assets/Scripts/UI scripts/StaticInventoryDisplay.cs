@@ -8,20 +8,20 @@ public class StaticInventoryDisplay : InventoryDisplay
     [SerializeField] private InventoryHolder inventoryHolder;
     [SerializeField] private InventorySlot_UI[] slots;
 
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
 
         if (inventoryHolder != null)
         {
-            Debug.LogWarning("Inventory holder is not null");
+            Debug.LogWarning($"Inventory holder of  {this.gameObject.name} is not null");
             inventorySystem = inventoryHolder.InventorySystem;
             inventorySystem.OnInventorySlotChanged += UpdateSlot;
         }
         else 
             Debug.LogWarning($"No inventory assigned to {this.gameObject.name}");
 
-        AssignSlot(InventorySystem);
+        AssignSlot(inventorySystem);
     }
 
     public override void AssignSlot(InventorySystem invToDisplay)
