@@ -16,4 +16,5 @@ MonoBehaviour:
   DisplayName: Tomato
   Description: This is the test item
   Icon: {fileID: -1152852607, guid: f5c400d2f899ff9459df0823a31c2f90, type: 3}
-  MaxStackSize: 5
+  MaxStackSize: 3
+  Value: 0

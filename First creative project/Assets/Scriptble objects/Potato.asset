@@ -16,4 +16,5 @@ MonoBehaviour:
   DisplayName: Potato
   Description: This is the test item
   Icon: {fileID: 550806989, guid: f5c400d2f899ff9459df0823a31c2f90, type: 3}
-  MaxStackSize: 3
+  MaxStackSize: 1
+  Value: 0
