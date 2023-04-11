@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AnimalAI : MonoBehaviour
+public class AnimalsAI : MonoBehaviour
 {
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;

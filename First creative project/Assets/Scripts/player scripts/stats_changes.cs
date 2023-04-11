@@ -18,10 +18,10 @@ public class stats_changes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.fillAmount = p.hitPoints / 100;
-        hungerBar.fillAmount = p.hungerPoints / 100;
-        thirstBar.fillAmount = p.thirstPoints / 100;
+        //healthBar.fillAmount = p.hitPoints / 100;
+        //hungerBar.fillAmount = p.hungerPoints / 100;
+        //thirstBar.fillAmount = p.thirstPoints / 100;
         //staminaBar.fillAmount -= p.staminaPoints / 100f;
-        staminaBar.fillAmount = p.staminaPoints;
+        //staminaBar.fillAmount = p.staminaPoints;
     }
 }
