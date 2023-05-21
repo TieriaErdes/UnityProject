@@ -2,22 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class camera_script : MonoBehaviour
 {
-
-    //float xRot;
-    //float yRot;
-    //float xRotCurrent;
-    //float yRotCurrent;
-    //[SerializeField] Camera player;
-    //[SerializeField] GameObject playerGameObject;
-    //[SerializeField] float sensivity = 5f;
-    //[SerializeField] float smoothTime = 0.1f;
-    //float currentVelosityX;
-    //float currentVelosityY;
-
-    // Start is called before the first frame update
+    /// <summary>
+    /// IN THIS SCRIPT VISiBILITY OF CURSOR
+    /// IN THIS SCRIPT VISiBILITY OF CURSOR
+    /// IN THIS SCRIPT VISiBILITY OF CURSOR
+    /// </summary>
 
     public float sensativityX;
     public float sensativityY;
@@ -25,6 +18,8 @@ public class camera_script : MonoBehaviour
     float rotationY;
 
     public Transform orientation;
+
+    [SerializeField] GameObject CentreMarker;
 
     void Start()
     {
@@ -35,26 +30,18 @@ public class camera_script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //xRot += Input.GetAxis("Mouse X") * sensivity;
-        //yRot += Input.GetAxis("Mouse Y") * sensivity;
-        //
-        //xRotCurrent = Mathf.SmoothDamp(xRotCurrent, xRot, ref currentVelosityX, smoothTime);
-        //xRotCurrent = Mathf.SmoothDamp(yRotCurrent, yRot, ref currentVelosityY, smoothTime);
-        //
-        //player.transform.rotation = Quaternion.Euler(-yRot, xRot, 0f);
-        //playerGameObject.transform.rotation = Quaternion.Euler(0f, xRot, 0f);
-
-
         // Возврат курсора
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        if (Keyboard.current.altKey.wasPressedThisFrame && !Cursor.visible)
         {
+            CentreMarker.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
 
         // Скрытие курсора
-        if (Input.GetKeyUp(KeyCode.LeftAlt))
+        else if (Keyboard.current.altKey.wasPressedThisFrame)
         {
+            CentreMarker.SetActive(true);   
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
