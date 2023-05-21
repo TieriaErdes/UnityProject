@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 250541220223120339}
   - component: {fileID: 6327759554925986693}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u043A\u0430\u0448\u0442\u0430\u043D 3"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ LODGroup:
   m_GameObject: {fileID: 590474324525033833}
   serializedVersion: 2
   m_LocalReferencePoint: {x: 1.9412193, y: 13.935098, z: 2.0114288}
-  m_Size: 35
+  m_Size: 40
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
@@ -52,7 +52,7 @@ LODGroup:
   - screenRelativeHeight: 0.6
     fadeTransitionWidth: 0
     renderers:
-    - renderer: {fileID: 856191225520622459}
+    - renderer: {fileID: 0}
     - renderer: {fileID: 5515466970340299179}
     - renderer: {fileID: 7370113423353021741}
   - screenRelativeHeight: 0.3
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 5618380390851792440}
   - component: {fileID: 5244922750491758951}
   - component: {fileID: 7485794669758065757}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 620476152562824702}
   - component: {fileID: 4070222356314293878}
   - component: {fileID: 7133581800960388926}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 3919103657165519726}
   - component: {fileID: 3625352900177630083}
   - component: {fileID: 1543533989815689652}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere.014|Plane|Dupli|
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,8 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 10797029336820875}
   - component: {fileID: 4345353962641694849}
-  - component: {fileID: 856191225520622459}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,48 +353,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3340394263324169101}
   m_Mesh: {fileID: 4029899406377155429, guid: 394846c2d6e62884b82926c253cd884f, type: 3}
---- !u!23 &856191225520622459
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3340394263324169101}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 4874126678125670354, guid: 394846c2d6e62884b82926c253cd884f, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &4028744709502366820
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +462,7 @@ GameObject:
   - component: {fileID: 2887692123509552525}
   - component: {fileID: 5388256395540049807}
   - component: {fileID: 5515466970340299179}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere.014|Plane|Dupli|
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,9 +476,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4608642257475700883}
-  m_LocalRotation: {x: -0.26226658, y: -0.49854842, z: 0.10248817, w: 0.81985486}
-  m_LocalPosition: {x: -0.010550933, y: -0.01616834, z: 0.022263581}
-  m_LocalScale: {x: 1.6550448, y: 1.0232619, z: 1.0358998}
+  m_LocalRotation: {x: -0.76517546, y: -0.28005683, z: 0.4249971, w: 0.39427435}
+  m_LocalPosition: {x: 0.9638672, y: 19.498713, z: 1.1736145}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 10797029336820875}
@@ -586,7 +543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2217563867160978725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u043A\u0430\u0448\u0442\u0430\u043D 3\u0443\u043C(Clone)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
