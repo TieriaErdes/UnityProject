@@ -6,34 +6,47 @@ using UnityEngine.InputSystem;
 
 public class PlayerInventoryHolder : InventoryHolder
 {
-    [SerializeField] private int secondaryInventorySize;
-    [SerializeField] protected InventorySystem secondaryInventorySystem;
+    //[SerializeField] private int secondaryInventorySize;
+    //[SerializeField] protected InventorySystem secondaryInventorySystem;
 
-    public InventorySystem SecondatyInventorySystem => secondaryInventorySystem;
+    //public InventorySystem SecondatyInventorySystem => secondaryInventorySystem;
 
-    public static UnityAction<InventorySystem> OnPlayerBackpackDisplayRequested;
+    /// <summary>
+    ///  ПРИВЯЗКА КЛАВИШИ ОТКРЫТИЯ ИНВЕНТАРЯ В ЭТОМ СКРИПТЕ
+    ///  В ФУНКЦИИ Update
+    /// </summary>
 
+    public static UnityAction OnPlayerInventoryChanged;
 
-    protected virtual void Awake()
+    public static UnityAction<InventorySystem, int> OnPlayerInventoryDisplayRequested;  
+
+    private void Start()
     {
-        base.Awake();
+        SaveGameManager.data.playerInventory = new InventorySaveData(primaryInventorySystem);
+        SaveLoad.OnLoadGame += LoadInventory;
+    }
 
-        secondaryInventorySystem = new InventorySystem(secondaryInventorySize);
+    protected override void LoadInventory(SaveData data)
+    {
+        // Проверяем data для конкретно этого сундука и если он существует, то загружаем его
+        if (data.playerInventory.InvSystem != null)
+        {
+            this.primaryInventorySystem = data.playerInventory.InvSystem;
+            //this.transform.position = chestData.position;
+            //this.transform.rotation = chestData.rotation;
+            OnPlayerInventoryChanged?.Invoke();
+        }
     }
 
     private void Update()
     {
         if (Keyboard.current.bKey.wasPressedThisFrame)
-            OnPlayerBackpackDisplayRequested?.Invoke(secondaryInventorySystem);
+            OnPlayerInventoryDisplayRequested?.Invoke(primaryInventorySystem, offset);
     }
 
     public bool AddToInventory(Inventory_itemData data, int amount)
     {
         if (primaryInventorySystem.AddToInventory(data, amount))
-        {
-            return true;
-        }
-        else if (secondaryInventorySystem.AddToInventory(data, amount))
         {
             return true;
         }
