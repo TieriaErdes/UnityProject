@@ -39,11 +39,11 @@ public class DayCycle : MonoBehaviour
         DynamicGI.UpdateEnvironment();
 
         var mainModule = Stars.main;
-        mainModule.startColor = new Color(1, 1, 1, 1 - SkyboxCurve.Evaluate(TimeOfDay));  
+        mainModule.startColor = new Color(1, 1, 1, 1 - SkyboxCurve.Evaluate(TimeOfDay));
 
         Sun.transform.localRotation = Quaternion.Euler(TimeOfDay * 360f, 180, 0);
-        Moon.transform.localRotation = Quaternion.Euler(TimeOfDay * 360f + 180, 180, 0);
-        
+        Moon.transform.localRotation = Quaternion.Euler(TimeOfDay * 360f + 180f, 180, 0);
+
         Sun.intensity = sunIntensity * SunCurve.Evaluate(TimeOfDay);
         Moon.intensity = moonIntensity * MoonCurve.Evaluate(TimeOfDay);
     }
