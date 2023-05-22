@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3747598033155230584}
   - component: {fileID: 7968987300174963625}
   - component: {fileID: 8864309625116131056}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 7788242915686681686}
   - component: {fileID: 7553380356848697691}
   - component: {fileID: 4505959457182833600}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere|Plane|Dupli|
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 1584346312745375116}
   - component: {fileID: 7884783778172294518}
   - component: {fileID: 6080100633769229157}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere|Plane|Dupli|
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2473876864391145131}
   - component: {fileID: 7064135068187156951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "2\u0434\u0443\u0431 "
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8979720336510153825}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "2\u0434\u0443\u0431 \u0443\u043C(Clone)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 5914767495919933350}
   - component: {fileID: 5639098843930619941}
   - component: {fileID: 8246878256699384890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 518513133004748425}
   - component: {fileID: 2012017147687319842}
   - component: {fileID: 2253538538393352963}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

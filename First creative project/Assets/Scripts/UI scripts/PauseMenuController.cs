@@ -14,6 +14,7 @@ public class PauseMenuController : MonoBehaviour
     public GameObject loadBotton;
     public GameObject deleteBotton;
     public GameObject Question;
+    public GameObject CentreMarker;
     
     private void Start()
     {
@@ -28,7 +29,7 @@ public class PauseMenuController : MonoBehaviour
     private void Update()
     {
         if (Keyboard.current.escapeKey.wasPressedThisFrame && !pauseMenuPref.activeSelf
-                                                           && (!DynamicInventory.activeSelf || !PlayerInventoryPanel.activeSelf))
+                                                           && !DynamicInventory.activeSelf && !PlayerInventoryPanel.activeSelf)
         {
             Debug.Log("Pause menu acive");
             saveButton.SetActive(true);
@@ -36,8 +37,12 @@ public class PauseMenuController : MonoBehaviour
             deleteBotton.SetActive(true);
             pauseMenuPref.SetActive(true);
 
-            //if (!Cursor.visible)
-            //    Cursor.visible = true;
+            if (!Cursor.visible)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                CentreMarker.SetActive(false);
+            }
 
             PlayerHotbar.SetActive(false);
             Time.timeScale = 0f;
@@ -49,8 +54,12 @@ public class PauseMenuController : MonoBehaviour
             deleteBotton.SetActive(false);
             pauseMenuPref.SetActive(false);
 
-            //if (Cursor.visible)
-            //    Cursor.visible=false;
+            if (Cursor.visible)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                CentreMarker.SetActive(true);
+            }
 
             PlayerHotbar.SetActive(true);
             Time.timeScale = 1.0f;
@@ -64,6 +73,14 @@ public class PauseMenuController : MonoBehaviour
         deleteBotton.SetActive(false);
         pauseMenuPref.SetActive(false);
 
+        if (Cursor.visible)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            CentreMarker.SetActive(true);
+        }
+
+        PlayerHotbar.SetActive(true);
         Time.timeScale = 1.0f;
     }
 
