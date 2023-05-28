@@ -1,38 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-<<<<<<<< Updated upstream:First creative project/Assets/models/каштан/каштан 22.fbx.meta
-guid: e89b82298fc42f941a12605b0504dfd6
-========
-guid: 38a97855e61d9144080ac2b39fb7cc93
->>>>>>>> Stashed changes:First creative project/Assets/models/каштан/каштан 228умобfbx.fbx.meta
-=======
-<<<<<<< HEAD
-guid: d0fc7b8da8df88f4a9a0baf80f280396
+guid: e2d16e368e4b919439c932a64b6698b5
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects: {}
-=======
-guid: 71789accece91354eb388aaf290bd4b9
->>>>>>> Stashed changes
-ModelImporter:
-  serializedVersion: 21300
-  internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LEAF
-    second: {fileID: 2100000, guid: 5e1cbf22e029f1f4a83cd3bf49329f4a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: f396ab1b7c23a044aaf3da2777b99444, type: 2}
-<<<<<<< Updated upstream
-=======
->>>>>>> 30214102891b5bc7f7cfd038032bfbae3933cf1d
->>>>>>> Stashed changes
   materials:
     materialImportMode: 2
     materialName: 0
