@@ -1,17 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-<<<<<<<< Updated upstream:First creative project/Assets/models/каштан/каштан 22 уменьш об.fbx.meta
-guid: a3bc0d1c477c3f144b5466d2b57a67a2
-========
-guid: d797e89919e4e1b4aabb241439edf470
->>>>>>>> Stashed changes:First creative project/Assets/models/каштан/каштан 228об.fbx.meta
-=======
-<<<<<<< HEAD
-guid: e44c87c9ac85a7d489e1e46bc35b1e40
-=======
-guid: dbc2dba9e67c7fb4a97b5585a0459f97
->>>>>>> 30214102891b5bc7f7cfd038032bfbae3933cf1d
->>>>>>> Stashed changes
+guid: 201ce8b5bfc94614f8d3a5f51109e0e7
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
