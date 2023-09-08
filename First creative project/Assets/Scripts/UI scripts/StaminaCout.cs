@@ -5,7 +5,7 @@ using TMPro;
 public class StaminaCout : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI staminaCout;
-    [SerializeField] private player_main pm;
+    [SerializeField] private player_main p_main;
 
     // Start is called before the first frame update
     
@@ -15,7 +15,7 @@ public class StaminaCout : MonoBehaviour
     {
         if (staminaCout != null)
         {
-            staminaCout.text = pm.staminaPoints.ToString();
+            staminaCout.text = p_main.staminaPoints.ToString();
         }
     }
 }

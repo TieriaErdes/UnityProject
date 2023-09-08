@@ -10,7 +10,7 @@ public static class SaveLoad
     public static UnityAction<SaveData> OnLoadGame;
 
     private static string directory = "/SaveData/";
-    private static string fileName = "SaveDame.sav";
+    private static string fileName = "SaveGame.sav";
 
     public static bool Save(SaveData data)
     {
@@ -41,6 +41,8 @@ public static class SaveLoad
             string json = File.ReadAllText(fullPath);
             data = JsonUtility.FromJson<SaveData>(json);
 
+            Debug.Log("Loading game");
+
             OnLoadGame?.Invoke(data);
         }
         else
@@ -54,6 +56,7 @@ public static class SaveLoad
     public static void DeleteSaveData()
     {
         string fullPath = Application.persistentDataPath + directory + fileName;
+        Debug.Log(fullPath);
 
         if (File.Exists(fullPath)) { File.Delete(fullPath); }
     }

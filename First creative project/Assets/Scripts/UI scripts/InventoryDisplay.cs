@@ -17,13 +17,15 @@ public abstract class InventoryDisplay : MonoBehaviour
     
     protected virtual void Start()
     {
-
+    
     }
 
     public abstract void AssignSlot(InventorySystem invToDisplay, int offset);      // осуществялется дочерний класс
 
     protected virtual void UpdateSlot(InventorySlot updatedSlot)
     {
+        //Debug.Log("Updating Slot");
+
         foreach (var slot in slotDictionary)
         {
             if (slot.Value == updatedSlot)          // Значение слота спрятано в коде inventory slot.
@@ -39,6 +41,15 @@ public abstract class InventoryDisplay : MonoBehaviour
         //Debug.Log("Slot clicked");
 
         bool isShiftPressed = Keyboard.current.leftShiftKey.isPressed;
+        
+
+        // ГАВНОКОД
+        //foreach (var slot in slotDictionary.Values)               
+        //{
+        //    UpdateSlot(slot);
+        //}
+        // ГАВНОКОД
+
 
         // Если слот, по которому нажали, имеет предмет и курсор не имеет предмета
         // то поднять предмет

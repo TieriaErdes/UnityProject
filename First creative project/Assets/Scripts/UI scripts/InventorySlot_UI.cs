@@ -5,6 +5,7 @@ using TMPro;
 public class InventorySlot_UI : MonoBehaviour
 {
     [SerializeField] private Image itemSprite;
+    [SerializeField] private GameObject _slotHighlight;
     [SerializeField] private TextMeshProUGUI itemCout;
     [SerializeField] private InventorySlot assignedInventorySlot;
 
@@ -16,6 +17,8 @@ public class InventorySlot_UI : MonoBehaviour
     private void Awake()
     {
         ClearSlot();
+
+        itemSprite.preserveAspect = true;
 
         button = GetComponent<Button>();
         button?.onClick.AddListener(OnUISlotClick);
@@ -47,6 +50,13 @@ public class InventorySlot_UI : MonoBehaviour
             itemSprite.sprite = null;
             itemCout.text = "";
         }
+    }
+
+    public void ToggleHighlight()
+    {
+        _slotHighlight.SetActive(!_slotHighlight.activeInHierarchy);
+
+        /// TODO: ядекюрэ намнбкемхе хмрептеияю хмбемрюпъ он йд
     }
 
     public void UpdateUISlot()

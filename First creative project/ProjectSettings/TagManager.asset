@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - WolfArea
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - Terrain
   - Tree
   - Interactable
-  - 
-  - 
-  - 
-  - 
+  - Bonfire
+  - NewBonfire
+  - Player
+  - Collectable
   - 
   - 
   - 

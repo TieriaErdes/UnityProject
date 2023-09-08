@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 
 [System.Serializable]
-public class InventorySlot
+public class InventorySlot: ISerializationCallbackReceiver
 {
-    [SerializeField] private Inventory_itemData _itemData;      // Референс к дате
+    [NonSerialized] private Inventory_itemData _itemData;      // Референс к дате
+    [SerializeField] private int _itemID = -1;
     [SerializeField] private int _stackSize;                    // текущий размер стака предмета -- как много информации мы имеем
 
     public Inventory_itemData ItemData => _itemData;
@@ -26,6 +28,7 @@ public class InventorySlot
     public void ClearSlot()
     {
         _itemData = null;
+        _itemID = -1;
         _stackSize = -1;
     }
 
@@ -36,6 +39,7 @@ public class InventorySlot
         else                // Перезаписываем слот вместе со слотом инвентаря, который мы передаём
         {
             _itemData = invSlot.ItemData;
+            _itemID = _itemData.ID;
             _stackSize = 0;
             AddToStack(invSlot._stackSize);
         }
@@ -44,6 +48,7 @@ public class InventorySlot
     public void UpdateInventorySlot(Inventory_itemData data, int amoutn)    // Обновление слота напрямую
     {
         _itemData = data;
+        _itemID = _itemData.ID;
         _stackSize = amoutn;
     }
 
@@ -87,4 +92,19 @@ public class InventorySlot
 
         return true;
     }
+
+    public void OnBeforeSerialize()
+    {
+        
+    }
+
+    public void OnAfterDeserialize()
+    {
+        if (_itemID == -1)
+            return;
+
+        var database = Resources.Load<DataBase>("Database");
+        _itemData = database.GetItem(_itemID);
+    }
+
 }

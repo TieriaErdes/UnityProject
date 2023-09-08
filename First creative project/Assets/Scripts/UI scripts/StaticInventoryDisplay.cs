@@ -6,15 +6,15 @@ public class StaticInventoryDisplay : InventoryDisplay
 {
 
     [SerializeField] private InventoryHolder inventoryHolder;
-    [SerializeField] private InventorySlot_UI[] slots;
+    [SerializeField] protected InventorySlot_UI[] slots;
 
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         PlayerInventoryHolder.OnPlayerInventoryChanged += RefresfStaticDisplay;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         PlayerInventoryHolder.OnPlayerInventoryChanged -= RefresfStaticDisplay;
     }
@@ -33,9 +33,9 @@ public class StaticInventoryDisplay : InventoryDisplay
         AssignSlot(inventorySystem, 0);
     }
 
-    protected override void Start()
+    protected virtual void Start()
     {
-        base.Start();
+        //base.Start();
 
         RefresfStaticDisplay();
     }

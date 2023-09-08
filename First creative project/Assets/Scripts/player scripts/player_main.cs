@@ -8,9 +8,9 @@ public class player_main : MonoBehaviour
     public player_movement pm;
 
     [Header("Main dependency")]
-    public float hitPoints = 100;
-    public float hungerPoints = 100;
-    public float thirstPoints = 100;
+    public int hitPoints = 100;
+    public int hungerPoints = 100;
+    public int thirstPoints = 100;
     public float staminaPoints = 100;
 
     private float hitPoitnsMax = 100;
@@ -18,12 +18,16 @@ public class player_main : MonoBehaviour
     private float thirstPointsMax = 100;
     private float staminaPointsMax = 100;
 
+    public QuestNormal quest;
+    public int Experience;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         pm = gameObject.GetComponent<player_movement>();
-        
+
 
     }
 
@@ -31,6 +35,17 @@ public class player_main : MonoBehaviour
     void Update()
     {
         staminaPointsModification();
+
+
+        if (quest.isActive)
+        {
+            // опнярн опхлеп
+            quest.goal.EnemyKilled();
+            if (quest.goal.IsReached())
+            {
+                Experience += quest.experienceReward;
+            }
+        }
     }
 
 

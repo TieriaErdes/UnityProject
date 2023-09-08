@@ -5,23 +5,58 @@ using UnityEngine.UI;
 
 public class stats_changes : MonoBehaviour
 {
-    public player_main p;
-    public Image healthBar, staminaBar, thirstBar, hungerBar;
+    [SerializeField] private player_main p_main;
+    public Image healthBarMask, staminaBarMask, thirstBarMask, hungerBarMask;
+    public Image healthBarFill, staminaBarFill, thirstBarFill, hungerBarFill;
+    //public Color healthBarColor, staminaBarColor, thirstBarColor, hungerBarColor;
 
+    public int Maximum;
+    public int CurrentHealth, CurrentStamina, CurrentThirst, CurrentHunger;
+
+    
     // Start is called before the first frame update
     void Start()
-    {
-        p = gameObject.GetComponent<player_main>();
-        
+    { 
+        //p_main = GameObject.Find("Player").GetComponent<player_main>();
+
+        /*SetColor(healthBarFill, healthBarColor);
+        SetColor(staminaBarFill, staminaBarColor);
+        SetColor(thirstBarFill, thirstBarColor);
+        SetColor(hungerBarFill, hungerBarColor);*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        //healthBar.fillAmount = p.hitPoints / 100;
-        //hungerBar.fillAmount = p.hungerPoints / 100;
-        //thirstBar.fillAmount = p.thirstPoints / 100;
-        //staminaBar.fillAmount -= p.staminaPoints / 100f;
-        //staminaBar.fillAmount = p.staminaPoints;
+        //SetCurrent();
+        CurrentHealth = p_main.hitPoints;
+        CurrentStamina = (int)p_main.staminaPoints;
+        CurrentThirst = p_main.thirstPoints;
+        CurrentHunger = p_main.hungerPoints;
+
+        GetCurrentFill(healthBarMask, CurrentHealth);
+        GetCurrentFill(staminaBarMask, CurrentStamina);
+        GetCurrentFill(thirstBarMask, CurrentThirst);
+        GetCurrentFill(hungerBarMask, CurrentHunger);
     }
+
+    void GetCurrentFill(Image mask, int current)
+    {
+        float fillAmount = (float)current / (float)Maximum;
+        mask.fillAmount = fillAmount;
+    }
+
+    void SetCurrent()
+    {
+        CurrentHealth = (int)p_main.hitPoints;
+        CurrentStamina = (int)p_main.staminaPoints;
+        CurrentThirst = (int)p_main.thirstPoints;
+        CurrentHunger = (int)p_main.hungerPoints;
+    }
+
+    //void SetColor(Image fill, Color color)
+    //{
+    //    fill.color = color;
+    //}
+
 }

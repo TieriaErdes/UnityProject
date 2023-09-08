@@ -9,16 +9,24 @@ using UnityEngine;
 public class UniqueID : MonoBehaviour
 {
     [ReadOnly, SerializeField] private string _id = Guid.NewGuid().ToString();
-    [SerializeField] private static SerializableDictionary<string, GameObject> idDatabase =
-        new SerializableDictionary<string, GameObject>();
+    [SerializeField] private static SerializableDictionary<string, GameObject> idDatabase = new SerializableDictionary<string, GameObject>();
 
     public string ID => _id;
 
-    private void OnValidate()
+    private void Awake()
     {
+        if (idDatabase == null) idDatabase =
+                new SerializableDictionary<string, GameObject>();
+
         if (idDatabase.ContainsKey(_id)) Generate();
         else idDatabase.Add(_id, this.gameObject);
     }
+
+    //private void OnValidate()
+    //{
+    //    if (idDatabase.ContainsKey(_id)) Generate();
+    //    else idDatabase.Add(_id, this.gameObject);
+    //}
 
     private void OnDestroy()
     {
@@ -29,5 +37,7 @@ public class UniqueID : MonoBehaviour
     {
         _id = Guid.NewGuid().ToString();
         idDatabase.Add(_id, this.gameObject);
+
+        //Debug.Log(idDatabase.Count);
     }
 }

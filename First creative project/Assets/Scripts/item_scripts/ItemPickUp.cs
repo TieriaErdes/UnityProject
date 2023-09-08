@@ -11,6 +11,10 @@ public class ItemPickUp : MonoBehaviour
     public float PickUpRadius = 1f;
     public Inventory_itemData ItemData;
 
+    [SerializeField] private float _rotationSpeed = 20f;
+
+    public PlayerInventoryHolder inventory;
+
     private SphereCollider myCollider;
 
     private string id;
@@ -18,7 +22,7 @@ public class ItemPickUp : MonoBehaviour
     [SerializeField] private ItemPickUpSaveData itemSaveData;
     private void Awake()
     {
-        id = GetComponent<UniqueID>().ID;
+        
         SaveLoad.OnLoadGame += LoadGame;
         itemSaveData = new ItemPickUpSaveData(ItemData, transform.position, transform.rotation); ;
 
@@ -26,11 +30,21 @@ public class ItemPickUp : MonoBehaviour
         myCollider = GetComponent<SphereCollider>();
         myCollider.isTrigger = true;
         myCollider.radius = PickUpRadius;
+
+        inventory = FindAnyObjectByType<PlayerInventoryHolder>();
     }
 
     private void Start()
     {
+        id = GetComponent<UniqueID>().ID;
         SaveGameManager.data.activeItems.Add(id, itemSaveData);
+    }
+
+    private void Update()
+    {
+        //transform.Rotate(Vector3.up * _rotationSpeed * Time.deltaTime);
+
+
     }
 
     private void LoadGame(SaveData data)
@@ -44,15 +58,28 @@ public class ItemPickUp : MonoBehaviour
         SaveLoad.OnLoadGame -= LoadGame;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //Debug.Log("ItemPickUp OnTriggerEnter");
+    //private void OnTriggerEnter(Collider other)
+    //{
+        
 
-        var inventory = other.transform.GetComponent<PlayerInventoryHolder>();
+    //    var inventory = other.transform.GetComponent<PlayerInventoryHolder>();
+
+    //    if (!inventory) return;
+
+    //    //Debug.Log("ItemPickUp OnTriggerEnter");
+
+    //    if (inventory.AddToInventory(ItemData, 1))
+    //    {
+    //        SaveGameManager.data.collectedItems.Add(id);
+    //        Destroy(this.gameObject);
+    //    }
+    //}
+
+    public void PickUpItem(GameObject other)
+    {
+        //var inventory = other.transform.GetComponent<PlayerInventoryHolder>();
 
         if (!inventory) return;
-
-        //Debug.Log("ItemPickUp OnTriggerEnter");
 
         if (inventory.AddToInventory(ItemData, 1))
         {
@@ -60,6 +87,11 @@ public class ItemPickUp : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    public string SetDescription()
+    {
+        return ItemData.Description;
+    }    
 }
 
 [System.Serializable]

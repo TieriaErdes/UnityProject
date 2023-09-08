@@ -16,6 +16,7 @@ public abstract class InventoryHolder : MonoBehaviour
     [SerializeField] protected InventorySystem primaryInventorySystem;
     [SerializeField] protected int offset = 10;
 
+
     public int Offset => offset;
 
     public InventorySystem PrimaryInventorySystem => primaryInventorySystem;
@@ -33,6 +34,8 @@ public abstract class InventoryHolder : MonoBehaviour
     }
 
     protected abstract void LoadInventory(SaveData saveData);
+
+    //public abstract void SaveInventoryData();
 }
 
 
@@ -40,14 +43,23 @@ public abstract class InventoryHolder : MonoBehaviour
 public struct InventorySaveData
 {
     public InventorySystem InvSystem;
+    //public Transform PositionRotation;
     public Vector3 Position;
     public Quaternion Rotation;
+    //public Vector3 LocalPosotion;
+    //public Quaternion LocalRotation;
 
-    public InventorySaveData(InventorySystem _invSystem, Vector3 _position, Quaternion _rotatoin)
+
+    // InventorySaveData получает данные компонента transform
+    public InventorySaveData(InventorySystem _invSystem, Vector3 _position, Quaternion _rotation)
     {
+        //Debug.Log($"Position {_position}");
+
         InvSystem = _invSystem;
         Position = _position;
-        Rotation = _rotatoin;
+        Rotation = _rotation;
+        //LocalPosotion = _localPosition;
+        //LocalRotation = _localRotation;
     }
 
     public InventorySaveData(InventorySystem _invSystem)
@@ -55,6 +67,8 @@ public struct InventorySaveData
         InvSystem = _invSystem;
         Position = Vector3.zero;
         Rotation = Quaternion.identity;
+        //LocalPosotion = Vector3.zero;
+        //LocalRotation = Quaternion.identity;
     }
 }
 

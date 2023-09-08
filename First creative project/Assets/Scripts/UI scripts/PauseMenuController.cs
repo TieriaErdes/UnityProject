@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenuController : MonoBehaviour
@@ -15,6 +16,7 @@ public class PauseMenuController : MonoBehaviour
     public GameObject deleteBotton;
     public GameObject Question;
     public GameObject CentreMarker;
+    public GameObject StatusBar;
     
     private void Start()
     {
@@ -23,6 +25,8 @@ public class PauseMenuController : MonoBehaviour
         loadBotton.SetActive(false);
         deleteBotton.SetActive(false);
         Question.SetActive(false);
+
+        Time.timeScale = 1.0f;
     }
 
     // Update is called once per frame
@@ -45,6 +49,7 @@ public class PauseMenuController : MonoBehaviour
             }
 
             PlayerHotbar.SetActive(false);
+            StatusBar.SetActive(false);
             Time.timeScale = 0f;
         }
         else if (Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -62,6 +67,7 @@ public class PauseMenuController : MonoBehaviour
             }
 
             PlayerHotbar.SetActive(true);
+            StatusBar.SetActive(true);
             Time.timeScale = 1.0f;
         }
     }
@@ -81,6 +87,7 @@ public class PauseMenuController : MonoBehaviour
         }
 
         PlayerHotbar.SetActive(true);
+        StatusBar.SetActive(true);
         Time.timeScale = 1.0f;
     }
 
@@ -97,5 +104,10 @@ public class PauseMenuController : MonoBehaviour
     public void NoAnswer()
     {
         Question.SetActive(false);
+    }
+
+    public void ExitToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
