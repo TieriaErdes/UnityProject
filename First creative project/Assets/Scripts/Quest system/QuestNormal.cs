@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Inventory System / Quest")]
 [System.Serializable]
-public class QuestNormal
+public class QuestNormal: ScriptableObject
 {
     public bool isActive;
 

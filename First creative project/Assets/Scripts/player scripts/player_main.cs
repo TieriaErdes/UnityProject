@@ -18,8 +18,10 @@ public class player_main : MonoBehaviour
     private float thirstPointsMax = 100;
     private float staminaPointsMax = 100;
 
-    public QuestNormal quest;
+    public QuestGiver quest;
     public int Experience;
+
+    public InventoryHolder inventory;
 
 
     // Start is called before the first frame update
@@ -37,14 +39,27 @@ public class player_main : MonoBehaviour
         staminaPointsModification();
 
 
-        if (quest.isActive)
+        if (quest.currentQuest.isActive)
         {
             // опнярн опхлеп
-            quest.goal.EnemyKilled();
-            if (quest.goal.IsReached())
+            //quest.currentQuest.goal.EnemyKilled();
+            //CheackGoalReached();
+
+            if (quest.currentQuest.goal.goalType == GoalType.Survive)
+                quest.currentQuest.goal.Surviving();
+
+            if (quest.currentQuest.goal.goalType == GoalType.Collect_sticks)
+                quest.currentQuest.goal.currentAmount = inventory.PrimaryInventorySystem.GetCountOfDesireItems("Branch");
+
+
+
+            if (quest.currentQuest.goal.IsReached())
             {
-                Experience += quest.experienceReward;
+                Experience += quest.currentQuest.experienceReward;
+                quest.currentQuest.Complete();
+                quest.GetNextQuest();
             }
+
         }
     }
 
@@ -56,5 +71,34 @@ public class player_main : MonoBehaviour
             staminaPoints -= 12 * Time.deltaTime;
         else if (pm.state == player_movement.MovementState.walkind && pm.isGrounded && (staminaPoints < staminaPointsMax))
             staminaPoints += 7.5f * Time.deltaTime;
+    }
+
+
+    private void CheackGoalReached()
+    {
+        switch (quest.currentQuest.goal.goalType)
+        {
+            case GoalType.Kill:
+                break;
+            case GoalType.Kill_rabbit:
+                break;
+            case GoalType.Gathering:
+                break;
+            case GoalType.Survive:
+                quest.currentQuest.goal.Surviving();
+                break;
+            case GoalType.Collect_eggs:
+                break;
+            case GoalType.Collect_sticks:
+                Debug.Log("Working");
+                quest.currentQuest.goal.currentAmount = inventory.PrimaryInventorySystem.GetCountOfDesireItems("Branch");
+                break;
+            case GoalType.Collect_leaves:
+                break;
+            case GoalType.Find:
+                break;
+            default:
+                break;
+        }
     }
 }

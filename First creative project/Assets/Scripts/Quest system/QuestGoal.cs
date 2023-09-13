@@ -29,6 +29,8 @@ public class QuestGoal
             currentAmount++;
         }
     }
+
+    
 }
 
 public enum GoalType

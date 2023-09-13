@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7189847343301424612}
   - component: {fileID: 1187678535166417459}
   - component: {fileID: 1417715399676563553}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Apple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,6 +127,7 @@ MonoBehaviour:
   PickUpRadius: 1
   ItemData: {fileID: 11400000, guid: 15ae1f131bf80ea47985ece107d89e89, type: 2}
   _rotationSpeed: 20
+  inventory: {fileID: 0}
   itemSaveData:
     ItemData: {fileID: 0}
     Position: {x: 0, y: 0, z: 0}

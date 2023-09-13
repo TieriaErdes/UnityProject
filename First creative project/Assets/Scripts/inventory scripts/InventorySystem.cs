@@ -75,4 +75,17 @@ public class InventorySystem
         freeSlot = InventorySlots.FirstOrDefault(i => i.ItemData == null);      // Получает первый свободный слот
         return freeSlot == null ? false : true;
     }
+
+    public int GetCountOfDesireItems(string nameOfDesireItem)
+    {
+        int countOfDesireItems = 0;
+        foreach (var slot in inventorySlots)
+        {
+            if (slot.ItemData != null)
+                if (slot.ItemData.DisplayName == nameOfDesireItem)
+                    countOfDesireItems++;
+        }
+
+        return countOfDesireItems;
+    }
 }

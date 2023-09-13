@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2935324234179746579}
   - component: {fileID: 2935324234179746578}
   - component: {fileID: 2935324234179746588}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Test item 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,6 +63,7 @@ MonoBehaviour:
   PickUpRadius: 1
   ItemData: {fileID: 11400000, guid: 174a3ff2d227d754c9bc7774376b8244, type: 2}
   _rotationSpeed: 20
+  inventory: {fileID: 0}
   itemSaveData:
     ItemData: {fileID: 0}
     Position: {x: 0, y: 0, z: 0}
@@ -91,7 +92,7 @@ GameObject:
   - component: {fileID: 2935324234337750181}
   - component: {fileID: 2935324234337750183}
   - component: {fileID: 2935324234337750182}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

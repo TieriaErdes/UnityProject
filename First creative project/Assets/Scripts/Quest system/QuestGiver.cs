@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 
 public class QuestGiver : MonoBehaviour
 {
-    public QuestNormal quest;
+    public QuestNormal currentQuest;
+    public int indexOfTheCurrentQuest = 0;
+    [SerializeField] private List<QuestNormal> QuestList;
 
     public player_main player;
 
@@ -18,13 +20,19 @@ public class QuestGiver : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI experienceText;
     public TextMeshProUGUI goldText;
+
+    private void Awake()
+    {
+        currentQuest.isActive = true;
+    }
+
     public void OpenQuestWindow()
     {
         questWindow.SetActive(true);
-        titleText.text = quest.title;
-        descriptionText.text = quest.description;
-        experienceText.text = quest.experienceReward.ToString();
-        goldText.text = quest.goldReward.ToString();
+        titleText.text = currentQuest.title;
+        descriptionText.text = currentQuest.description;
+        experienceText.text = currentQuest.experienceReward.ToString();
+        goldText.text = currentQuest.goldReward.ToString();
 
         if (!Cursor.visible)
         {
@@ -46,8 +54,8 @@ public class QuestGiver : MonoBehaviour
     public void AcceptQuest()
     {
         questWindow.SetActive(false);
-        quest.isActive = true;                      // Выдаём квест игроку
-        player.quest = quest;
+        currentQuest.isActive = true;                      // Выдаём квест игроку
+        //player.quest.quest = quest;
 
         if (Cursor.visible)
         {
@@ -64,5 +72,15 @@ public class QuestGiver : MonoBehaviour
 
         //else if (Keyboard.current.jKey.wasPressedThisFrame && questWindow.activeSelf)
         //    CloseQuestWindow();
+    }
+
+    public void GetNextQuest()
+    {
+        if (indexOfTheCurrentQuest < QuestList.Count)
+        {
+            indexOfTheCurrentQuest++;
+            currentQuest = QuestList[indexOfTheCurrentQuest];
+            currentQuest.isActive = true;
+        }
     }
 }
