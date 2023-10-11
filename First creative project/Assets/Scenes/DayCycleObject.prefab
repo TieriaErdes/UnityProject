@@ -1,0 +1,233 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1640794307754490853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1640794307754490859}
+  - component: {fileID: 1640794307754490852}
+  m_Layer: 0
+  m_Name: DayCycleObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1640794307754490859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640794307754490853}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23.298035, y: 36.939564, z: -36.130127}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1640794307754490852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640794307754490853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a6856e5b521184b995b28afa35cf2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOfDay: 0
+  DayDuration: 10
+  SunCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0010566711
+      value: 0.1980337
+      inSlope: 27.45438
+      outSlope: 27.45438
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.059254795
+    - serializedVersion: 3
+      time: 0.05240567
+      value: 0.9996929
+      inSlope: -0.01183046
+      outSlope: -0.01183046
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.45031577
+      value: 0.9995196
+      inSlope: 0.008377277
+      outSlope: 0.008377277
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23584534
+    - serializedVersion: 3
+      time: 0.5604077
+      value: 0
+      inSlope: -0.028485201
+      outSlope: -0.028485201
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.61105144
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9671914
+      value: 0
+      inSlope: 0.013078213
+      outSlope: 0.013078213
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.902169
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.20034206
+      inSlope: 10.06555
+      outSlope: 10.06555
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20432888
+      outWeight: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 1
+    m_RotationOrder: 4
+  MoonCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.19128409
+      inSlope: 27.45438
+      outSlope: 27.45438
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.059254795
+    - serializedVersion: 3
+      time: 0.5507311
+      value: 0.9929433
+      inSlope: -0.01183046
+      outSlope: -0.01183046
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.94864124
+      value: 0.99276996
+      inSlope: 0.008377277
+      outSlope: 0.008377277
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23584534
+    - serializedVersion: 3
+      time: 1.05
+      value: 0
+      inSlope: -0.028485201
+      outSlope: -0.028485201
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.61105144
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.4655168
+      value: 0
+      inSlope: 0.013078213
+      outSlope: 0.013078213
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.902169
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1.4983253
+      value: 0.19359244
+      inSlope: 10.06555
+      outSlope: 10.06555
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20432888
+      outWeight: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 1
+    m_RotationOrder: 4
+  SkyboxCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.2
+      inSlope: 2.4497898
+      outSlope: 2.4497898
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.68496776
+    - serializedVersion: 3
+      time: 0.05240567
+      value: 0.9996929
+      inSlope: 0.017488588
+      outSlope: 0.017488588
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4006898
+      value: 1.0014575
+      inSlope: 0.008377277
+      outSlope: 0.008377277
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.23584534
+    - serializedVersion: 3
+      time: 0.6015454
+      value: 0.005784085
+      inSlope: -0.0014559623
+      outSlope: -0.0014559623
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.65157074
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9534881
+      value: 0
+      inSlope: 0.0019596603
+      outSlope: 0.0019596603
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 1
+    - serializedVersion: 3
+      time: 1
+      value: 0.2
+      inSlope: 5.584234
+      outSlope: 5.584234
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17517683
+      outWeight: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 1
+    m_RotationOrder: 4
+  DaySkybox: {fileID: 2100000, guid: 63187d3c2d475a34aa45e85faac11b37, type: 2}
+  NightSkybox: {fileID: 2100000, guid: e8f84a3092741a845a0ed1f862a17896, type: 2}
+  Stars: {fileID: 0}
+  Sun: {fileID: 0}
+  Moon: {fileID: 0}
