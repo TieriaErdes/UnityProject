@@ -6,6 +6,7 @@ public class GlobalTime : MonoBehaviour
 {
     public DayCycle dayCycle;
     public int Day = 1;
+    public GameObject RainEffect;
 
     public string CurrentDayOfWeek;
     public string CurrentTime;
@@ -20,6 +21,7 @@ public class GlobalTime : MonoBehaviour
     {
         variableHour = dayCycle.DayDuration / 24;                   // 24 часа
         variableMinute = dayCycle.DayDuration / (24 * 60);          // 24 часа и 60 минут
+        RainEffect.SetActive(false);
     }
 
     private void TimeCounter()
@@ -42,6 +44,15 @@ public class GlobalTime : MonoBehaviour
             CurrentTime = (hours - 24) + ":" + minutes;
     }
 
+    static bool IsRainyDay(int Day)
+    {
+        if (Day == 2)
+        {
+            return true;
+        }
+        return false;
+    }
+
 
     public TextMeshProUGUI textWeek;
     public TextMeshProUGUI textDay;
@@ -55,5 +66,10 @@ public class GlobalTime : MonoBehaviour
         textTime.text = CurrentTime;
         CurrentDayOfWeek = dayOfWeek[Day % 7 - 1];                     // 7 дней недели -- размер dayOfWeek;  -1 потому что отсчёт дней ведём с 1
         textWeek.text = CurrentDayOfWeek;
+
+        if (IsRainyDay(Day))
+        {
+            RainEffect.SetActive(true);
+        }
     }
 }
