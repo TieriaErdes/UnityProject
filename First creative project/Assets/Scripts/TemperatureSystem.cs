@@ -16,14 +16,6 @@ public class TemperatureSystem : MonoBehaviour
 
     public GameObject bonfire;
 
-    private int cheaksPerHour = 10;
-
-
-    private void Start()
-    {
-        //InvokeRepeating("TemperatureCounter", 0, globalTime.dayCycle.DayDuration / (24 * cheaksPerHour));
-    }
-
     private void Update()
     {
         TemperatureCounter();
@@ -35,6 +27,9 @@ public class TemperatureSystem : MonoBehaviour
     {
         switch (globalTime.hours)
         {
+            case 0:
+                temperature = 22;
+                break;
             case 1:
                 temperature = 22;
                 break;
@@ -46,11 +41,11 @@ public class TemperatureSystem : MonoBehaviour
                 break;
             case 4:
                 temperature = 18;
-                break;          
-            case 5:             
+                break;
+            case 5:
                 temperature = 19;
-                break;          
-            case 6:             
+                break;
+            case 6:
                 temperature = 19;
                 break;
             case 7:

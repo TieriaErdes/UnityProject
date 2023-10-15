@@ -17,6 +17,8 @@ public class PauseMenuController : MonoBehaviour
     public GameObject Question;
     public GameObject CentreMarker;
     public GameObject StatusBar;
+    public GameObject Timer;
+    public GameObject Temperature;
     
     private void Start()
     {
@@ -50,6 +52,8 @@ public class PauseMenuController : MonoBehaviour
 
             PlayerHotbar.SetActive(false);
             StatusBar.SetActive(false);
+            Timer.SetActive(false);
+            Temperature.SetActive(false);
             Time.timeScale = 0f;
         }
         else if (Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -68,6 +72,8 @@ public class PauseMenuController : MonoBehaviour
 
             PlayerHotbar.SetActive(true);
             StatusBar.SetActive(true);
+            Timer.SetActive(true);
+            Temperature.SetActive(true);
             Time.timeScale = 1.0f;
         }
     }
@@ -88,6 +94,8 @@ public class PauseMenuController : MonoBehaviour
 
         PlayerHotbar.SetActive(true);
         StatusBar.SetActive(true);
+        Timer.SetActive(true);
+        Temperature.SetActive(true);
         Time.timeScale = 1.0f;
     }
 

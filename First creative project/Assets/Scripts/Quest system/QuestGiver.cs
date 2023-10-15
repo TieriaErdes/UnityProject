@@ -76,7 +76,7 @@ public class QuestGiver : MonoBehaviour
 
     public void GetNextQuest()
     {
-        if (indexOfTheCurrentQuest < QuestList.Count)
+        if (indexOfTheCurrentQuest < QuestList.Count - 1)               // -1 потому что количество != индекс
         {
             indexOfTheCurrentQuest++;
             currentQuest = QuestList[indexOfTheCurrentQuest];

@@ -43,13 +43,13 @@ public class player_main : MonoBehaviour
         {
             // опнярн опхлеп
             //quest.currentQuest.goal.EnemyKilled();
-            //CheackGoalReached();
+            CheackGoalReached();
 
-            if (quest.currentQuest.goal.goalType == GoalType.Survive)
-                quest.currentQuest.goal.Surviving();
+            //if (quest.currentQuest.goal.goalType == GoalType.Survive)
+            //    quest.currentQuest.goal.Surviving();
 
-            if (quest.currentQuest.goal.goalType == GoalType.Collect_sticks)
-                quest.currentQuest.goal.currentAmount = inventory.PrimaryInventorySystem.GetCountOfDesireItems("Branch");
+            //if (quest.currentQuest.goal.goalType == GoalType.Collect_sticks)
+            //    quest.currentQuest.goal.currentAmount = inventory.PrimaryInventorySystem.GetCountOfDesireItems("Branch");
 
 
 
