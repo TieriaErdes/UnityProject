@@ -28,7 +28,7 @@ public class TemperatureSystem : MonoBehaviour
     {
         TemperatureCounter();
 
-        text.text = temperature + " °C";
+        text.text = temperature + " Â°C";
     }
 
     private void TemperatureCounter()
