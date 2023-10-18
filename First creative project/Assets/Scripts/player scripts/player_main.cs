@@ -90,7 +90,7 @@ public class player_main : MonoBehaviour
             case GoalType.Collect_eggs:
                 break;
             case GoalType.Collect_sticks:
-                Debug.Log("Working");
+                //Debug.Log("Working");
                 quest.currentQuest.goal.currentAmount = inventory.PrimaryInventorySystem.GetCountOfDesireItems("Branch");
                 break;
             case GoalType.Collect_leaves:
