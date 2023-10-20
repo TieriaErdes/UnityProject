@@ -375,6 +375,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6721129076168631916}
+  - component: {fileID: 4451744806124225713}
   m_Layer: 0
   m_Name: "\u041A\u0430\u0448\u0442\u0430\u043D 6"
   m_TagString: Untagged
@@ -400,6 +401,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &4451744806124225713
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6200876026506312918}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.043440342, y: 4.948346, z: -0.59834886}
+  m_Size: 12
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 7059918515257858171}
+    - renderer: {fileID: 5097064776355134689}
+    - renderer: {fileID: 4070059707281363090}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3131735466881251929}
+    - renderer: {fileID: 879222016750296771}
+    - renderer: {fileID: 8283306164418376368}
+  m_Enabled: 1
 --- !u!1 &7625965632306422235
 GameObject:
   m_ObjectHideFlags: 0
