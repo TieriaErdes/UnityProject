@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1077467244787635793}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u041E\u0441\u0438\u043D\u0430 11 \u0443\u043C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7058920625007519040}
   - component: {fileID: 1563131091615319277}
   - component: {fileID: 6495240220097605376}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 7764217038133772139}
   - component: {fileID: 2271788766612315846}
   - component: {fileID: 5770767243965150507}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 343881517057985658}
   - component: {fileID: 6880329477639000834}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u041E\u0441\u0438\u043D\u0430 11"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,8 @@ GameObject:
   - component: {fileID: 2383577795392155435}
   - component: {fileID: 3834771659081942648}
   - component: {fileID: 7059472264926214788}
-  m_Layer: 0
+  - component: {fileID: 1654135337380216974}
+  m_Layer: 7
   m_Name: tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,6 +347,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1654135337380216974
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483347895987653581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4781277628412113339, guid: b54bd0e3f15015842a9b4cfcfa76b904, type: 3}
 --- !u!1 &3804181674509131444
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +372,7 @@ GameObject:
   - component: {fileID: 2310846517681806412}
   - component: {fileID: 8036973182562980727}
   - component: {fileID: 5883924376693918733}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere.005|Plane|Dupli|
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +455,7 @@ GameObject:
   - component: {fileID: 3108174007068030208}
   - component: {fileID: 4540050822845652051}
   - component: {fileID: 7768164229883486383}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +538,7 @@ GameObject:
   - component: {fileID: 3037570200605066855}
   - component: {fileID: 7331658079911414108}
   - component: {fileID: 6598264528807761446}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere.005|Plane|Dupli|
   m_TagString: Untagged
   m_Icon: {fileID: 0}

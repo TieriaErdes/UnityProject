@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2614194995321261477}
   - component: {fileID: 4504424699647248964}
   - component: {fileID: 6337944976159520596}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Icosphere.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3693485481722318147}
   - component: {fileID: 2991647321568905890}
   - component: {fileID: 4679941936412424114}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Icosphere.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,8 @@ GameObject:
   - component: {fileID: 6565599745109797848}
   - component: {fileID: 5710073736110080651}
   - component: {fileID: 2013621206688185975}
-  m_Layer: 0
+  - component: {fileID: 2479462232463594406}
+  m_Layer: 7
   m_Name: tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,6 +252,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2479462232463594406
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5358948456193019710}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4781277628412113339, guid: 3fe663313e79e3641a7f97cf4260a870, type: 3}
 --- !u!1 &6497058600995536431
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,7 +277,7 @@ GameObject:
   - component: {fileID: 7623058159900064406}
   - component: {fileID: 2712583517100991358}
   - component: {fileID: 6066611296366518549}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Icosphere.010|Plane.002|Dupli|
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +360,7 @@ GameObject:
   - component: {fileID: 5484024438360861502}
   - component: {fileID: 6357069236774650477}
   - component: {fileID: 934295526503022225}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +443,7 @@ GameObject:
   - component: {fileID: 3494638321629833290}
   - component: {fileID: 8987868189480506446}
   - component: {fileID: 1475523654610944939}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Icosphere.010|Plane.002|Dupli|249
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7623105574103976047}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u0414\u0443\u0431 9 \u0443\u043C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -543,7 +558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9136729576119060617}
   - component: {fileID: 8738837437939777919}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u0414\u0443\u0431 9"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7052737980889122121}
   - component: {fileID: 1312576941239651589}
   - component: {fileID: 879222016750296771}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Suzanne.001|Plane|Dupli|
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1714123116130829390}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u041A\u0430\u0448\u0442\u0430\u043D 6"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 3609728486132442911}
   - component: {fileID: 2754979280957165132}
   - component: {fileID: 8283306164418376368}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 8962453856354953059}
   - component: {fileID: 1145821760627803795}
   - component: {fileID: 3131735466881251929}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Suzanne.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 3129911027288401771}
   - component: {fileID: 6393074533739425575}
   - component: {fileID: 5097064776355134689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Suzanne.001|Plane|Dupli|
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6721129076168631916}
   - component: {fileID: 4451744806124225713}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u041A\u0430\u0448\u0442\u0430\u043D 6"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,8 @@ GameObject:
   - component: {fileID: 8689592411919172925}
   - component: {fileID: 7832975415409142894}
   - component: {fileID: 4070059707281363090}
-  m_Layer: 0
+  - component: {fileID: 3075786605572094373}
+  m_Layer: 7
   m_Name: tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,6 +512,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3075786605572094373
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7625965632306422235}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4781277628412113339, guid: 30aabec61a38bff419b3aaa090956b4d, type: 3}
 --- !u!1 &8034844390312880794
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +537,7 @@ GameObject:
   - component: {fileID: 3958381363132548417}
   - component: {fileID: 5001582181159871665}
   - component: {fileID: 7059918515257858171}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Suzanne.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
