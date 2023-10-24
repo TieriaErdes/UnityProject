@@ -12,7 +12,7 @@ public class QuestGoal
 
     public bool IsReached()
     {
-        return (currentAmount > requiredAmount);
+        return (currentAmount >= requiredAmount);
     }
 
     // опнярн опхлеп
@@ -21,12 +21,23 @@ public class QuestGoal
         if (goalType == GoalType.Kill)
             currentAmount++;
     }
+    // опнярн опхлеп
 
     public void Surviving()
     {
         if (goalType == GoalType.Survive)
         {
             currentAmount++;
+        }
+    }
+
+    public void FindTheSpot()
+    {
+        if (goalType == GoalType.Find)
+        {
+            currentAmount++;
+
+            Debug.Log("The spot is find");
         }
     }
 

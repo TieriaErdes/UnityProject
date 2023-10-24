@@ -124,9 +124,9 @@ public class HotbarDisplay : StaticInventoryDisplay
 
     private void Update()
     {
-        if (_playerControls.Player.MouseWheel.ReadValue<float>() > 0.1f)
-            ChangeIndex(1);
         if (_playerControls.Player.MouseWheel.ReadValue<float>() < -0.1f)
+            ChangeIndex(1);
+        if (_playerControls.Player.MouseWheel.ReadValue<float>() > 0.1f)
             ChangeIndex(-1);
     }
 
