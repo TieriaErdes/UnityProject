@@ -4,7 +4,6 @@ using Unity.Mathematics;
 using UnityEngine;
 
 
-[RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(UniqueID))]
 public class ItemPickUp : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class ItemPickUp : MonoBehaviour
 
     public PlayerInventoryHolder inventory;
 
-    private SphereCollider myCollider;
+    //private SphereCollider myCollider;
 
     private string id;
 
@@ -27,9 +26,9 @@ public class ItemPickUp : MonoBehaviour
         itemSaveData = new ItemPickUpSaveData(ItemData, transform.position, transform.rotation); ;
 
 
-        myCollider = GetComponent<SphereCollider>();
-        myCollider.isTrigger = true;
-        myCollider.radius = PickUpRadius;
+        //myCollider = GetComponent<SphereCollider>();
+        //myCollider.isTrigger = true;
+        //myCollider.radius = PickUpRadius;
 
         inventory = FindAnyObjectByType<PlayerInventoryHolder>();
     }

@@ -20,6 +20,7 @@ public class NormalPickUp : MonoBehaviour
     private GameObject
         suggestionWindowUI, descriprionWindowUI;
     [SerializeField] TextMeshProUGUI itemName;
+    [SerializeField] private Vector3 CameraPosition;
 
     private void Start()
     {
@@ -89,14 +90,17 @@ public class NormalPickUp : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawRay(playerCamera.transform.parent.parent.position, playerCamera.transform.forward * hitRange, Color.red);
+        CameraPosition = playerCamera.transform.parent.parent.position;
+        CameraPosition.y += 0.5f;
+
+        Debug.DrawRay(CameraPosition, playerCamera.transform.forward * hitRange, Color.red);
 
         if (hit.collider != null)
         {
             //hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
             suggestionWindowUI.SetActive(false);
         }
-        if (Physics.Raycast(playerCamera.transform.parent.parent.position, playerCamera.transform.forward, out hit, hitRange, pickableLayerMask))
+        if (Physics.Raycast(CameraPosition, playerCamera.transform.forward, out hit, hitRange, pickableLayerMask))
         {
             //hit.collider.GetComponent<Highlight>().ToggleHighlight(true);
             suggestionWindowUI.SetActive(true);
