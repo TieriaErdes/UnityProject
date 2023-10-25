@@ -29,6 +29,9 @@ public class PauseMenuController : MonoBehaviour
         Question.SetActive(false);
 
         Time.timeScale = 1.0f;
+
+        MusicManager.instance.PlayMusic("Ночная тема");
+        Debug.Log("Первичный вызов темы");
     }
 
     // Update is called once per frame
@@ -55,6 +58,8 @@ public class PauseMenuController : MonoBehaviour
             Timer.SetActive(false);
             Temperature.SetActive(false);
             Time.timeScale = 0f;
+
+            MusicManager.instance.PlayMusic("Тема меню паузы");
         }
         else if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
@@ -75,6 +80,8 @@ public class PauseMenuController : MonoBehaviour
             Timer.SetActive(true);
             Temperature.SetActive(true);
             Time.timeScale = 1.0f;
+
+            MusicManager.instance.PlayMusic("Ночная тема");
         }
     }
 
@@ -97,6 +104,8 @@ public class PauseMenuController : MonoBehaviour
         Timer.SetActive(true);
         Temperature.SetActive(true);
         Time.timeScale = 1.0f;
+
+        MusicManager.instance.PlayMusic("Ночная тема");
     }
 
     public void ExitGame()

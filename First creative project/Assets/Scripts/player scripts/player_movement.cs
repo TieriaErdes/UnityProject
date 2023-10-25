@@ -53,7 +53,8 @@ public class player_movement : MonoBehaviour
         sprinting,
         climbing,
         crouching,
-        air
+        air,
+        standing
     }
 
     public bool climbing;
@@ -156,6 +157,8 @@ public class player_movement : MonoBehaviour
             state = MovementState.sprinting;
             movementSpeed = sprintSpeed;
             sprintTime += Time.deltaTime;
+
+            //MusicManager.instance.PlaySoundEffects("RunningFootstepsInGrass");
         }
 
         // Обычный шаг
@@ -163,6 +166,8 @@ public class player_movement : MonoBehaviour
         {
             state = MovementState.walkind;
             movementSpeed = walkSpeed;
+
+            //MusicManager.instance.PlaySoundEffects("FootstepsInGrass");
         }
 
         // В воздухе
