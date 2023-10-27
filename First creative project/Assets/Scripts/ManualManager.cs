@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ManualManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private TextMeshProUGUI Content;
+    [SerializeField] private TextMeshProUGUI[] manualContent;
+
+    private void Awake()
     {
-        
+        Content.text = manualContent[0].text;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetContent(GameObject title)
     {
-        
+        //int[] number = title.name.ToIntArray();
+        //Debug.Log(number[0]);
+
+        Content.text = manualContent[title.name.ToIntArray()[0] - 48].text;
+        //Content.text = ( manualContent[title.name.ToIntArray()[0] - 48] );
     }
 }

@@ -10,6 +10,7 @@ public class PauseMenuController : MonoBehaviour
     public GameObject DynamicInventory;
     public GameObject PlayerInventoryPanel;
     public GameObject PlayerHotbar;
+    public GameObject HotbarBackground;
     public GameObject pauseMenuPref;
     public GameObject saveButton;
     public GameObject loadBotton;
@@ -19,6 +20,8 @@ public class PauseMenuController : MonoBehaviour
     public GameObject StatusBar;
     public GameObject Timer;
     public GameObject Temperature;
+
+    private bool isExitToMainMenu;
     
     private void Start()
     {
@@ -54,6 +57,7 @@ public class PauseMenuController : MonoBehaviour
             }
 
             PlayerHotbar.SetActive(false);
+            HotbarBackground.SetActive(false);
             StatusBar.SetActive(false);
             Timer.SetActive(false);
             Temperature.SetActive(false);
@@ -76,6 +80,7 @@ public class PauseMenuController : MonoBehaviour
             }
 
             PlayerHotbar.SetActive(true);
+            HotbarBackground.SetActive(true);
             StatusBar.SetActive(true);
             Timer.SetActive(true);
             Temperature.SetActive(true);
@@ -100,6 +105,7 @@ public class PauseMenuController : MonoBehaviour
         }
 
         PlayerHotbar.SetActive(true);
+        HotbarBackground.SetActive(true);
         StatusBar.SetActive(true);
         Timer.SetActive(true);
         Temperature.SetActive(true);
@@ -110,12 +116,16 @@ public class PauseMenuController : MonoBehaviour
 
     public void ExitGame()
     {
+        if (isExitToMainMenu) { }
         Question.SetActive(true);
     }
 
     public void YesAnswer()
     {
-        Application.Quit();
+        if (isExitToMainMenu)
+            SceneManager.LoadScene(0);
+        else
+            Application.Quit();
     }
 
     public void NoAnswer()
@@ -123,8 +133,10 @@ public class PauseMenuController : MonoBehaviour
         Question.SetActive(false);
     }
 
-    public void ExitToMenu()
+    public void ExitToMainMenu()
     {
-        SceneManager.LoadScene(0);
+        isExitToMainMenu = true;
+
+        Question.SetActive(true);
     }
 }
