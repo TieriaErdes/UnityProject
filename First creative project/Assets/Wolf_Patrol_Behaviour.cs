@@ -32,7 +32,7 @@ public class Wolf_Patrol_Behaviour : StateMachineBehaviour
             agent.SetDestination(WolfArea[Random.Range(0, WolfArea.Count)].position);
 
         timer += Time.deltaTime;
-        if (timer > 10)
+        if (timer > 100)
             animator.SetBool("IsPatrolling", false);
 
         float distance = Vector3.Distance(animator.transform.position, player.position);
