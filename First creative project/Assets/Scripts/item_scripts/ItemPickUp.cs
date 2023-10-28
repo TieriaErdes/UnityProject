@@ -39,13 +39,6 @@ public class ItemPickUp : MonoBehaviour
         SaveGameManager.data.activeItems.Add(id, itemSaveData);
     }
 
-    private void Update()
-    {
-        transform.Rotate(Vector3.up * _rotationSpeed * Time.deltaTime);
-
-
-    }
-
     private void LoadGame(SaveData data)
     {
         if (data.collectedItems.Contains(id)) { Destroy(this.gameObject); }

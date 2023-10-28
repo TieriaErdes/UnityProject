@@ -8,9 +8,9 @@ public class player_main : MonoBehaviour
     public player_movement pm;
 
     [Header("Main dependency")]
-    public int hitPoints = 100;
-    public int hungerPoints = 100;
-    public int thirstPoints = 100;
+    public float hitPoints = 100;
+    public float hungerPoints = 100;
+    public float thirstPoints = 100;
     public float staminaPoints = 100;
 
     private float hitPoitnsMax = 100;
@@ -37,6 +37,9 @@ public class player_main : MonoBehaviour
     void Update()
     {
         staminaPointsModification();
+        healthPointsModification();
+        hungerPointsModification();
+        thistPointModification();
 
 
         if (quest.currentQuest.isActive)
@@ -71,6 +74,28 @@ public class player_main : MonoBehaviour
             staminaPoints -= 12 * Time.deltaTime;
         else if (pm.state == player_movement.MovementState.walkind && pm.isGrounded && (staminaPoints < staminaPointsMax))
             staminaPoints += 7.5f * Time.deltaTime;
+    }
+
+    private void healthPointsModification()
+    {
+        //<summary>
+        //TODO: Сделать механику восстановления хп
+    }
+
+    private void hungerPointsModification()
+    {
+        if (pm.state == player_movement.MovementState.climbing || pm.state == player_movement.MovementState.sprinting)
+            hungerPoints -= 0.12f * Time.deltaTime;
+        else if (pm.state == player_movement.MovementState.walkind && pm.isGrounded && (staminaPoints < staminaPointsMax))
+            hungerPoints -= 0.08f * Time.deltaTime;
+    }
+
+    private void thistPointModification()
+    {
+        if (pm.state == player_movement.MovementState.climbing || pm.state == player_movement.MovementState.sprinting)
+            thirstPoints -= 0.15f * Time.deltaTime;
+        else if (pm.state == player_movement.MovementState.walkind && pm.isGrounded && (staminaPoints < staminaPointsMax))
+            thirstPoints -= 0.1f * Time.deltaTime;
     }
 
 

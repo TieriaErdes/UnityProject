@@ -16,6 +16,11 @@ public class JournalManager : MonoBehaviour
             OpenJournal();
         else if (Keyboard.current.jKey.wasPressedThisFrame && journal.activeSelf) 
             CloseJournal();
+
+        if (Keyboard.current.mKey.wasPressedThisFrame && !manualWindow.activeSelf)
+            OpenManual();
+        else if (Keyboard.current.mKey.wasPressedThisFrame && manualWindow.activeSelf)
+            Closemanual();
     }
 
     public void OpenJournal()

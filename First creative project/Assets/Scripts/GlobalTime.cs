@@ -12,7 +12,8 @@ public class GlobalTime : MonoBehaviour
     public string CurrentTime;
 
     private List<string> dayOfWeek = new List<string>()
-        { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    //{ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"};
     public int hours, minutes;
     private float variableHour;
     private float variableMinute;

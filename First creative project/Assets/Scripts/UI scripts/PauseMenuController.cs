@@ -20,6 +20,7 @@ public class PauseMenuController : MonoBehaviour
     public GameObject StatusBar;
     public GameObject Timer;
     public GameObject Temperature;
+    //public GameObject QuestShortInfo;
 
     private bool isExitToMainMenu;
     
@@ -61,6 +62,7 @@ public class PauseMenuController : MonoBehaviour
             StatusBar.SetActive(false);
             Timer.SetActive(false);
             Temperature.SetActive(false);
+            //QuestShortInfo.SetActive(false);
             Time.timeScale = 0f;
 
             MusicManager.instance.PlayMusic("Тема меню паузы");
@@ -84,6 +86,7 @@ public class PauseMenuController : MonoBehaviour
             StatusBar.SetActive(true);
             Timer.SetActive(true);
             Temperature.SetActive(true);
+            //QuestShortInfo.SetActive(true);
             Time.timeScale = 1.0f;
 
             MusicManager.instance.PlayMusic("Ночная тема");
@@ -109,6 +112,7 @@ public class PauseMenuController : MonoBehaviour
         StatusBar.SetActive(true);
         Timer.SetActive(true);
         Temperature.SetActive(true);
+        //QuestShortInfo.SetActive(true);
         Time.timeScale = 1.0f;
 
         MusicManager.instance.PlayMusic("Ночная тема");

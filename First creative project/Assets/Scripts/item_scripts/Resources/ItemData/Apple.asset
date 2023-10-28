@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 3
   DisplayName: Apple
   Description: "\u042F\u0431\u043B\u043E\u043A\u043E"
-  Icon: {fileID: -1333196373, guid: f5c400d2f899ff9459df0823a31c2f90, type: 3}
+  Icon: {fileID: 21300000, guid: b9131837f43fa464eb61edf98f1725e2, type: 3}
   MaxStackSize: 5
   Value: 0
   ItemPrefab: {fileID: 970955191362919385, guid: 7c7f5888be617b84b87980d238438449, type: 3}

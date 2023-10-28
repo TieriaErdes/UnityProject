@@ -29,10 +29,10 @@ public class stats_changes : MonoBehaviour
     void Update()
     {
         //SetCurrent();
-        CurrentHealth = p_main.hitPoints;
+        CurrentHealth = (int)p_main.hitPoints;
         CurrentStamina = (int)p_main.staminaPoints;
-        CurrentThirst = p_main.thirstPoints;
-        CurrentHunger = p_main.hungerPoints;
+        CurrentThirst = (int)p_main.thirstPoints;
+        CurrentHunger = (int)p_main.hungerPoints;
 
         GetCurrentFill(healthBarMask, CurrentHealth);
         GetCurrentFill(staminaBarMask, CurrentStamina);
@@ -46,13 +46,13 @@ public class stats_changes : MonoBehaviour
         mask.fillAmount = fillAmount;
     }
 
-    void SetCurrent()
-    {
-        CurrentHealth = (int)p_main.hitPoints;
-        CurrentStamina = (int)p_main.staminaPoints;
-        CurrentThirst = (int)p_main.thirstPoints;
-        CurrentHunger = (int)p_main.hungerPoints;
-    }
+    //void SetCurrent()
+    //{
+    //    CurrentHealth = (int)p_main.hitPoints;
+    //    CurrentStamina = (int)p_main.staminaPoints;
+    //    CurrentThirst = (int)p_main.thirstPoints;
+    //    CurrentHunger = (int)p_main.hungerPoints;
+    //}
 
     //void SetColor(Image fill, Color color)
     //{

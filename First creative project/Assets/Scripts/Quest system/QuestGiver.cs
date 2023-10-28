@@ -21,9 +21,15 @@ public class QuestGiver : MonoBehaviour
     public TextMeshProUGUI experienceText;
     public TextMeshProUGUI goldText;
 
+    [SerializeField] private TextMeshProUGUI questNameShortInfo;
+    [SerializeField] private TextMeshProUGUI goalTypeShortInfo;
+    [SerializeField] private TextMeshProUGUI complitionShortInfo;
+
     private void Awake()
     {
         currentQuest.isActive = true;
+
+        //InvokeRepeating("VisualizeQuestInfoFor10Seconds", 0, 10.0f);
     }
 
     public void OpenQuestWindow()
@@ -72,6 +78,7 @@ public class QuestGiver : MonoBehaviour
 
         //else if (Keyboard.current.jKey.wasPressedThisFrame && questWindow.activeSelf)
         //    CloseQuestWindow();
+        VisualizeQuestInfo();
     }
 
     public void GetNextQuest()
@@ -82,5 +89,12 @@ public class QuestGiver : MonoBehaviour
             currentQuest = QuestList[indexOfTheCurrentQuest];
             currentQuest.isActive = true;
         }
+    }
+
+    public void VisualizeQuestInfo()
+    {
+        questNameShortInfo.text = currentQuest.title.ToString();
+        goalTypeShortInfo.text = currentQuest.goal.goalType.ToString();
+        complitionShortInfo.text = currentQuest.goal.currentAmount.ToString() + " / " + currentQuest.goal.requiredAmount.ToString();
     }
 }

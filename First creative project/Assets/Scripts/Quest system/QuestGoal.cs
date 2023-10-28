@@ -27,7 +27,8 @@ public class QuestGoal
     {
         if (goalType == GoalType.Survive)
         {
-            currentAmount++;
+            //currentAmount++;
+            currentAmount = (int)Time.unscaledTime;
         }
     }
 
@@ -53,5 +54,6 @@ public enum GoalType
     Collect_eggs,
     Collect_sticks,
     Collect_leaves,
-    Find
+    Find,
+    Collect_food
 }
